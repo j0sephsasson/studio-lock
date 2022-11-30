@@ -2,12 +2,12 @@
 <hr>
 
 ### 1. Create Base Template
-- [ ] Move header slideshow to 'index' template
-- [ ] Render the base template on initial load
+- [X] Move header slideshow to 'index' template
+- [X] Render the base template on initial load
 
 ### 2. Authentication Flow (login/signup)
-- [ ] Create nav buttons for login/signup
-- [ ] Create 'login' & 'signup' templates and render inside base using jinja/block_content function
+- [X] Create nav buttons for login/signup
+- [X] Create 'login' & 'signup' templates and render inside base using jinja/block_content function
 - [ ] Create ajax query & endpoint to recieve data & authenticate/signup users (in the DB!)
 - [ ] Update UI to show spinners when processing authentication data
 
