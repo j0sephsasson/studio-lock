@@ -13,22 +13,12 @@ auth = Blueprint('auth', __name__)
 def login():
     return render_template('login.html')
 
-## endpoint to login users
-@auth.route('/login_post', methods=['POST'])
-def login_post():
-    address = request.form['data']
-    address = str(address.lower())
+@auth.route('/signup')
+def signup():
+    return render_template('signup.html')
 
-    user = User.query.filter_by(address=address).first()
-
-    # check if the user actually exists, if not, sign them up!
-    if not user:
-        new_user = User(address=address)
-        db.session.add(new_user)
-        db.session.commit()
-        login_user(new_user)
-        return render_template('profile.html')
-
-    # if the above check passes, then we know the user has the right credentials
-    login_user(user)
-    return render_template('profile.html')
+@auth.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('main.index'))
