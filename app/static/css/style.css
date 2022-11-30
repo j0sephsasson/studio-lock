@@ -1292,3 +1292,27 @@ section {
   color: #fff;
   text-decoration: none;
 }
+
+
+/*--------------------------------------------------------------
+# Authentication Flow
+--------------------------------------------------------------*/
+.login-form {
+  padding-top: 100px;
+}
+
+@media (max-width: 650px) {
+  .login-form {
+    padding-top: 150px;
+  }
+}
+
+.login-header {
+  color: #fd5c28;
+  text-align: center;
+}
+
+.login-btn {
+  color: white;
+  background-color: #fd5c28;
+}
