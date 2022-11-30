@@ -22,3 +22,8 @@ def index():
 @main.route('/about', methods=['GET', 'POST'])
 def about():
     return render_template('about.html')
+
+# studio_details page of our web-app
+@main.route('/studio_details', methods=['GET', 'POST'])
+def studio_details():
+    return render_template('studio_details.html', studio_name='Testing')
