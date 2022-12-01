@@ -88,7 +88,7 @@
                     <li><a href="#">Contact</a></li>
 
                     <li><a href="{{ url_for('auth.login') }}">Login</a></li>
-                    <li><a href="#">Signup</a></li>
+                    <li><a href="{{ url_for('auth.signup') }}">Signup</a></li>
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav><!-- .navbar -->
@@ -100,6 +100,7 @@
     <section id="hero">
         {% block content %}
         {% endblock %}
+
     </section><!-- End Hero -->
 
     <main id="main">
