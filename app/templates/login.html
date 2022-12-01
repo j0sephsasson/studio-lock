@@ -1,33 +1,24 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container login-form">
-    
-    <div class="card text-center">
-        <div class="card-header">
-            <h1 class="login-header">Login</h1>
-        </div>
-        <div class="card-body">
-            <form>
-                <div class="form-group">
-                  <strong><label for="exampleInputEmail1">Email address</label></strong>
-                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                  <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                </div>
-                <div class="form-group">
-                  <strong><label for="exampleInputPassword1">Password</label></strong>
-                  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                </div>
-                <!-- <div class="form-check">
-                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                  <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                </div> -->
-                <button type="submit" class="btn login-btn">Login</button>
-            </form>
-        </div>
-        <!-- <div class="card-footer text-muted">
-          2 days ago
-        </div> -->
+<div class="login-box">
+  <h2>Login</h2>
+  <form>
+    <div class="user-box">
+      <input type="text" name="" required="">
+      <label>Username</label>
     </div>
+    <div class="user-box">
+      <input type="password" name="" required="">
+      <label>Password</label>
+    </div>
+    <a href="#">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      Submit
+    </a>
+  </form>
 </div>
 {% endblock %}
