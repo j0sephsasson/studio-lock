@@ -1317,7 +1317,7 @@ body {
   transform: translate(-50%, -50%);
   background: rgba(0,0,0,.7);
   box-sizing: border-box;
-  box-shadow: 0 15px 25px rgba(0,0,0,.6);
+  /* box-shadow: 0 15px 25px rgba(0,0,0,.6); */
   border-radius: 10px;
 }
 
@@ -1365,14 +1365,14 @@ body {
 .login-box form a {
   position: relative;
   display: inline-block;
-  padding: 10px 20px;
+  padding: 5px 8px;
   color: #fd5c28;
   font-size: 16px;
   text-decoration: none;
   text-transform: uppercase;
   overflow: hidden;
   transition: .5s;
-  margin-top: 40px;
+  margin-top: 10px;
   letter-spacing: 4px
 }
 
@@ -1430,7 +1430,7 @@ body {
   transform: translate(-50%, -50%);
   background: rgba(0,0,0,.7);
   box-sizing: border-box;
-  box-shadow: 0 15px 25px rgba(0,0,0,.6);
+  /* box-shadow: 0 15px 25px rgba(0,0,0,.6); */
   border-radius: 10px;
   overflow-y: scroll;
 }
