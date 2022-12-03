@@ -3,16 +3,16 @@
 {% block content %}
 <div class="login-box">
   <h2>Login</h2>
-  <form>
+  <form method="POST" action="/login_post" id="myForm-login">
     <div class="user-box">
-      <input type="text" name="" required="">
+      <input type="text" name="username" required="">
       <label>Username</label>
     </div>
     <div class="user-box">
-      <input type="password" name="" required="">
+      <input type="password" name="password" required="">
       <label>Password</label>
     </div>
-    <a href="#">
+    <a class="submit-login" href="#" id="login-btn">
       <span></span>
       <span></span>
       <span></span>
@@ -20,5 +20,6 @@
       Submit
     </a>
   </form>
+  <script type="text/javascript" src="static/js/login.js"></script>
 </div>
 {% endblock %}
