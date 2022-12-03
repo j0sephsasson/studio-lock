@@ -2,6 +2,13 @@
 
 {% block content %}
 <div class="login-box">
+  {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div class="alert alert-danger">
+            {{ messages[0] }}
+        </div>
+        {% endif %}
+    {% endwith %}
   <h2>Login</h2>
   <form method="POST" action="/login_post" id="myForm-login">
     <div class="user-box">
