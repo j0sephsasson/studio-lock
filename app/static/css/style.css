@@ -1420,22 +1420,46 @@ body {
 
 
 /* SIGNUP */
-
 .signup-box {
   position: absolute;
   top: 50%;
   left: 50%;
   width: 400px;
+  height: 400px;
   padding: 40px;
   transform: translate(-50%, -50%);
   background: rgba(0,0,0,.7);
   box-sizing: border-box;
   box-shadow: 0 15px 25px rgba(0,0,0,.6);
   border-radius: 10px;
+  overflow-y: scroll;
+}
+.signup-box::-webkit-scrollbar {
+  width: 10px;
 }
 
-.signup-box h2 {
-  margin: 0 0 30px;
+.signup-box::-webkit-scrollbar-track {
+  background: rgb(179, 177, 177);
+  border-radius: 10px;
+}
+
+.signup-box::-webkit-scrollbar-thumb {
+  background: rgb(136, 136, 136);
+  border-radius: 10px;
+}
+
+.signup-box::-webkit-scrollbar-thumb:hover {
+  background: rgb(100, 100, 100);
+  border-radius: 10px;
+}
+
+.signup-box::-webkit-scrollbar-thumb:active {
+  background: rgb(68, 68, 68);
+  border-radius: 10px;
+}
+
+.signup-box h3 {
+  margin: 0 0 15px;
   padding: 0;
   color: #fff;
   text-align: center;
@@ -1447,10 +1471,10 @@ body {
 
 .signup-box .user-box input {
   width: 100%;
-  padding: 10px 0;
+  padding: 8px 0;
   font-size: 16px;
   color: #fff;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   border: none;
   border-bottom: 1px solid #fff;
   outline: none;
@@ -1460,8 +1484,8 @@ body {
   position: absolute;
   top:0;
   left: 0;
-  padding: 10px 0;
-  font-size: 16px;
+  padding: 8px 0;
+  font-size: 13px;
   color: #fff;
   pointer-events: none;
   transition: .5s;
@@ -1475,39 +1499,39 @@ body {
   font-size: 12px;
 }
 
-.signup-box form a {
+#signup-btn {
   position: relative;
   display: inline-block;
-  padding: 10px 20px;
+  padding: 5px 8px;
   color: #fd5c28;
   font-size: 16px;
   text-decoration: none;
   text-transform: uppercase;
   overflow: hidden;
   transition: .5s;
-  margin-top: 40px;
+  margin-top: 10px;
   letter-spacing: 4px
 }
 
-.signup-box a:hover {
+#signup-btn:hover {
   background: #fd5c28;
   color: #fff;
   border-radius: 5px;
 }
 
-.signup-box a span {
+#signup-btn span {
   position: absolute;
   display: block;
 }
 
-.signup-box a span:nth-child(1) {
+#signup-btn span:nth-child(1) {
   top: 0;
   left: -100%;
   width: 100%;
   height: 2px;
 }
 
-.signup-box a span:nth-child(2) {
+#signup-btn span:nth-child(2) {
   top: -100%;
   right: 0;
   width: 2px;
@@ -1515,7 +1539,7 @@ body {
   background: linear-gradient(180deg, transparent, #fd5c28);
 }
 
-.signup-box a span:nth-child(3) {
+#signup-btn span:nth-child(3) {
   bottom: 0;
   right: -100%;
   width: 100%;
@@ -1523,7 +1547,7 @@ body {
   background: linear-gradient(270deg, transparent, #fd5c28);
 }
 
-.signup-box a span:nth-child(4) {
+#signup-btn span:nth-child(4) {
   bottom: -100%;
   left: 0;
   width: 2px;
