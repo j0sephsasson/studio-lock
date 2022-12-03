@@ -2,31 +2,53 @@
 
 {% block content %}
 <div class="signup-box">
-    <h2>Sign Up</h2>
-    <form>
-      <div class="user-box">
-        <input type="text" name="" required="">
-        <label>Name</label>
-      </div>
-      <div class="user-box">
-        <input type="text" name="" required="">
-        <label>Username</label>
-      </div>
-      <div class="user-box">
-        <input type="text" name="" required="">
-        <label>Email</label>
-      </div>
-      <div class="user-box">
-        <input type="password" name="" required="">
-        <label>Password</label>
-      </div>
-      <a href="#">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        Submit
-      </a>
-    </form>
+  {% with messages = get_flashed_messages() %}
+        {% if messages[0] == 'Email address already exists' %}
+        <div class="alert alert-danger">
+            {{ messages[0] }}. Please <a href="{{ url_for('auth.login') }}">
+                Login
+            </a>
+        </div>
+        {% elif messages[0] == 'Account Created!' %}
+        <div class="alert alert-success">
+            {{ messages[0] }} Please <a href="{{ url_for('auth.login') }}">
+                Login
+            </a>
+        </div>
+        {% elif messages[0] == 'Username already exists' %}
+        <div class="alert alert-danger">
+            {{ messages[0] }} Please <a href="{{ url_for('auth.signup') }}">
+                try with a different username
+            </a>
+        </div>
+        {% endif %}
+        {% endwith %}
+  <h3>Sign Up</h3>
+  <form method="POST" action="/signup_post" id="myForm">
+    <div class="user-box">
+      <input type="text" name="name" required="">
+      <label>Name</label>
+    </div>
+    <div class="user-box">
+      <input type="text" name="username" required="">
+      <label>Username</label>
+    </div>
+    <div class="user-box">
+      <input type="text" name="email" required="">
+      <label>Email</label>
+    </div>
+    <div class="user-box">
+      <input type="password" name="password" required="">
+      <label>Password</label>
+    </div>
+    <a class="submit" href="#" id="signup-btn">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      Submit
+    </a>
+  </form>
+  <script type="text/javascript" src="static/js/signup.js"></script>
 </div>
 {% endblock %}
