@@ -18,6 +18,12 @@ main = Blueprint('main', __name__)
 def index():
     return render_template('index.html')
 
+# profile page of our web-app
+@main.route('/profile', methods=['GET', 'POST'])
+def profile():
+    name = current_user.name
+    return render_template('profile.html', name=name)
+
 # about page of our web-app
 @main.route('/about', methods=['GET', 'POST'])
 def about():
