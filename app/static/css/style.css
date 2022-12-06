@@ -1030,7 +1030,7 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 400px;
+  width: 350px;
   padding: 40px;
   transform: translate(-50%, -50%);
   background: rgba(0,0,0,.7);
@@ -1039,8 +1039,24 @@ body {
   border-radius: 10px;
 }
 
-.login-box h2 {
-  margin: 0 0 30px;
+@media (max-width: 600px) {
+  .login-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300px;
+    padding: 40px;
+    transform: translate(-50%, -50%);
+    background: rgba(0,0,0,.7);
+    box-sizing: border-box;
+    /* box-shadow: 0 15px 25px rgba(0,0,0,.6); */
+    border-radius: 10px;
+    margin: auto;
+  }
+}
+
+.login-box h3 {
+  margin: 0 0 25px;
   padding: 0;
   color: #fff;
   text-align: center;
@@ -1055,7 +1071,7 @@ body {
   padding: 10px 0;
   font-size: 16px;
   color: #fff;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   border: none;
   border-bottom: 1px solid #fff;
   outline: none;
@@ -1066,7 +1082,7 @@ body {
   top:0;
   left: 0;
   padding: 10px 0;
-  font-size: 16px;
+  font-size: 13px;
   color: #fff;
   pointer-events: none;
   transition: .5s;
@@ -1085,7 +1101,7 @@ body {
   display: inline-block;
   padding: 5px 8px;
   color: #fd5c28;
-  font-size: 16px;
+  font-size: 14px;
   text-decoration: none;
   text-transform: uppercase;
   overflow: hidden;
@@ -1142,7 +1158,7 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 400px;
+  width: 350px;
   height: 400px;
   padding: 40px;
   transform: translate(-50%, -50%);
@@ -1151,6 +1167,25 @@ body {
   /* box-shadow: 0 15px 25px rgba(0,0,0,.6); */
   border-radius: 10px;
   overflow-y: scroll;
+}
+@media (max-width: 600px) {
+  .signup-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300px;
+    height: 400px;
+    padding: 40px;
+    transform: translate(-50%, -50%);
+    background: rgba(0,0,0,.7);
+    box-sizing: border-box;
+    /* box-shadow: 0 15px 25px rgba(0,0,0,.6); */
+    border-radius: 10px;
+    margin: auto;
+  }
+  .signup-box::-webkit-scrollbar {
+    display: none;
+  }
 }
 .signup-box::-webkit-scrollbar {
   width: 10px;
