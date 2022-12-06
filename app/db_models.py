@@ -13,6 +13,17 @@ class User(UserMixin, db.Model):
 class Studio(db.Model):
     id = db.Column(db.Integer, primary_key=True) # primary keys are required by SQLAlchemy
     name = db.Column(db.Text, unique=True, nullable=False)
+    phone_number = db.Column(db.Text, unique=True, nullable=False)
+
+## studio rates table ##
+class StudioRates(db.Model):
+    id = db.Column(db.Integer, primary_key=True) # primary keys are required by SQLAlchemy
+    name = db.Column(db.Text, unique=True, nullable=False)
+    hourly_rate = db.Column(db.Text, unique=False, nullable=False)
+    hourly_rate_engineer_included = db.Column(db.Text, unique=False, nullable=True)
+    hourly_rate_premium = db.Column(db.Text, unique=False, nullable=True)
+    hourly_rate_extra_one = db.Column(db.Text, unique=False, nullable=True)
+    hourly_rate_extra_two = db.Column(db.Text, unique=False, nullable=True)
 
 ## bookings table ##
 class Bookings(db.Model):
