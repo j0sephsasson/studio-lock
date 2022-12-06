@@ -1,51 +1,19 @@
 {% extends "base.html" %}
 
 {% block content %}
-<form action="/booking_post" method="POST">
-  <div class="card text-center">
-    <div class="card-body">
-      <h5 class="card-title">Book Studio Time</h5>
-      <form action="reservation.php" method="post">
-        <div class="elem-group">
-          <label for="name" id="label-name">Studio Name: </label>
-          <input type="text" id="input-name" name="visitor_name" placeholder="" pattern=[A-Z\sa-z]{3,20} required>
-        </div>
-        <div class="elem-group">
-          <label for="email" id="label-email">Email: </label>
-          <input type="email" id="input-email" name="visitor_email" placeholder="" required>
-        </div>
-        <div class="elem-group">
-          <label for="package-selection" id="label-package">Studio Package: </label>
-          <select id="package-selection" name="package_selection" required>
-              <option value=""></option>
-              <option value="connecting">Option 1</option>
-              <option value="adjoining">Option 2</option>
-              <option value="adjacent">Option 3</option>
-          </select>
-        </div>
-        <br>
-
-        <div class="elem-group inlined">
-          <label for="booking-date" id="label-date">Date: </label>
-          <input type="date" id="booking-date" name="booking_date" required>
-        </div>
-        <div class="elem-group inlined">
-        <label for="booking-time" id="label-time">Time: </label>
-        <select id=booking-time name="booking_time" required>
-          <option value="">Select time</option>
-          <option value="">12pm - 4pm</option>
-          <option value="">4pm - 8pm</option>
-          <option value="">8pm - 12am</option>
-        </select>
-        </div>
-        <br>
-        <div class="elem-group">
-          <label for="additional-message" id="label-message">Additional Comments: </label>
-          <textarea id="additional-message" name="additional_message" placeholder=""></textarea>
-        </div>
-        <button type="submit" id="confirm-booking-btn">Confirm Booking</button>
-    </form>
-    </div>
+<div class="card text-center" id="booking-card">
+  <div class="card-header">
+    Featured
   </div>
-</form>
+  <div class="card-body">
+    <h5 class="card-title">Special title treatment</h5>
+    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+    <form action="/booking_post" method="POST">
+      <button class="btn btn-primary">Book Now</button>
+    </form>
+  </div>
+  <div class="card-footer text-muted">
+    2 days ago
+  </div>
+</div>
 {% endblock %}
