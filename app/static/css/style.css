@@ -1331,12 +1331,13 @@ body {
 }
 
 
-
 /*--------------------------------------------------------------
 # BOOKING
 --------------------------------------------------------------*/
 .card-title {
-  font-size: 20px
+  font-size: 20px;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+  text-decoration: underline;
 }
 
 .card-body {
@@ -1348,15 +1349,15 @@ body {
   width: 1300px;
   align-self: center;
   margin-top: 35px;
+  overflow-y: scroll;
 }
 
 div.elem-group {
   margin: auto;
 }
 
-div.elem-group.inlined {
+div.elem-time-date.inlined {
   width: 49%;
-  display: inline-block;
   float: left;
   margin-left: 1%;
   text-align: left
@@ -1364,16 +1365,16 @@ div.elem-group.inlined {
 
 #label-name {
   display: block;
-  font-family: 'Nanum Gothic';
+  font-family:Georgia, 'Times New Roman', Times, serif;
   padding-bottom: 10px;
   font-size: 1.25em;
   padding: 1px;
-  text-align: left
+  text-align: left;
 }
 
 #label-email {
   display: block;
-  font-family: 'Nanum Gothic';
+  font-family:Georgia, 'Times New Roman', Times, serif;
   padding-bottom: 10px;
   font-size: 1.25em;
   padding: 1px;
@@ -1382,26 +1383,25 @@ div.elem-group.inlined {
 
 #label-date {
   display: block;
-  font-family: 'Nanum Gothic';
-  padding-bottom: 10px;
-  font-size: 1.25em;
-  padding: 1px;
-  text-align: left
-}
-
-#label-time {
-  display: block;
-  font-family: 'Nanum Gothic';
+  font-family:Georgia, 'Times New Roman', Times, serif;
   padding-bottom: 10px;
   font-size: 1.25em;
   padding: 1px;
   text-align: left;
-  margin: 5px;
+}
+
+#label-time {
+  display: block;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+  padding-bottom: 10px;
+  font-size: 1.25em;
+  padding: 1px;
+  text-align: left;
 }
 
 #label-package {
   display: block;
-  font-family: 'Nanum Gothic';
+  font-family:Georgia, 'Times New Roman', Times, serif;
   padding-bottom: 10px;
   font-size: 1.25em;
   padding: 1px;
@@ -1410,11 +1410,11 @@ div.elem-group.inlined {
 
 #label-message {
   display: block;
-  font-family: 'Nanum Gothic';
+  font-family:Georgia, 'Times New Roman', Times, serif;
   padding-bottom: 10px;
   font-size: 1.25em;
   padding: 1px;
-  text-align: left
+  text-align: left;
 }
 
 #input-name {
@@ -1451,8 +1451,8 @@ div.elem-group.inlined {
   border-radius: 2px;
   border: 2px solid #777;
   box-sizing: border-box;
-  font-size: 1.25em;
-  font-family: 'Nanum Gothic';
+  font-size: 1em;
+  font-family:Georgia, 'Times New Roman', Times, serif;
   width: 100%;
   padding: 1px;
 }
@@ -1461,11 +1461,10 @@ div.elem-group.inlined {
   border-radius: 2px;
   border: 2px solid #777;
   box-sizing: border-box;
-  font-size: 1.25em;
-  font-family: 'Nanum Gothic';
+  font-size: 1em;
+  font-family:Georgia, 'Times New Roman', Times, serif;
   width: 100%;
   padding: 1px;
-  margin-top: 10px
 }
 
 #additional-message {
@@ -1512,4 +1511,15 @@ div.elem-group.inlined input {
 #confirm-booking-btn:hover {
   background-color: #fd5c28;
   color: white
+}
+
+@media (max-width: 600px) {
+  .card-body {
+    max-height: 500px;
+    overflow-y: auto;
+    width: 75%;
+    margin: auto;
+    margin-top: 100px;
+    border-radius: 8%;
+  }
 }
