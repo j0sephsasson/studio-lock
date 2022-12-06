@@ -1335,10 +1335,19 @@ body {
 /*--------------------------------------------------------------
 # BOOKING
 --------------------------------------------------------------*/
-body {
+.card-title {
+  font-size: 20px
+}
+
+.card-body {
+  justify-content: center;
+  border: 2px solid black;
+  padding: 20px;
+  box-shadow: 10px 5px 5px rgba(0,0,0,.7);
+  height: 550px;
   width: 1300px;
-  margin: 0 auto;
-  padding: 50px;
+  align-self: center;
+  margin-top: 35px;
 }
 
 div.elem-group {
@@ -1353,7 +1362,7 @@ div.elem-group.inlined {
   text-align: left
 }
 
-label {
+#label-name {
   display: block;
   font-family: 'Nanum Gothic';
   padding-bottom: 10px;
@@ -1362,7 +1371,104 @@ label {
   text-align: left
 }
 
-input, select, textarea {
+#label-email {
+  display: block;
+  font-family: 'Nanum Gothic';
+  padding-bottom: 10px;
+  font-size: 1.25em;
+  padding: 1px;
+  text-align: left
+}
+
+#label-date {
+  display: block;
+  font-family: 'Nanum Gothic';
+  padding-bottom: 10px;
+  font-size: 1.25em;
+  padding: 1px;
+  text-align: left
+}
+
+#label-time {
+  display: block;
+  font-family: 'Nanum Gothic';
+  padding-bottom: 10px;
+  font-size: 1.25em;
+  padding: 1px;
+  text-align: left;
+  margin: 5px;
+}
+
+#label-package {
+  display: block;
+  font-family: 'Nanum Gothic';
+  padding-bottom: 10px;
+  font-size: 1.25em;
+  padding: 1px;
+  text-align: left
+}
+
+#label-message {
+  display: block;
+  font-family: 'Nanum Gothic';
+  padding-bottom: 10px;
+  font-size: 1.25em;
+  padding: 1px;
+  text-align: left
+}
+
+#input-name {
+  border-radius: 2px;
+  border: 2px solid #777;
+  box-sizing: border-box;
+  font-size: 1.25em;
+  font-family: 'Nanum Gothic';
+  width: 100%;
+  padding: 1px;
+}
+
+#input-email {
+  border-radius: 2px;
+  border: 2px solid #777;
+  box-sizing: border-box;
+  font-size: 1.25em;
+  font-family: 'Nanum Gothic';
+  width: 100%;
+  padding: 1px;
+}
+
+#package-selection {
+  border-radius: 2px;
+  border: 2px solid #777;
+  box-sizing: border-box;
+  font-size: 1.25em;
+  font-family: 'Nanum Gothic';
+  width: 100%;
+  padding: 1px;
+}
+
+#booking-date {
+  border-radius: 2px;
+  border: 2px solid #777;
+  box-sizing: border-box;
+  font-size: 1.25em;
+  font-family: 'Nanum Gothic';
+  width: 100%;
+  padding: 1px;
+}
+
+#booking-time {
+  border-radius: 2px;
+  border: 2px solid #777;
+  box-sizing: border-box;
+  font-size: 1.25em;
+  font-family: 'Nanum Gothic';
+  width: 100%;
+  padding: 1px;
+  margin-top: 10px
+}
+
+#additional-message {
   border-radius: 2px;
   border: 2px solid #777;
   box-sizing: border-box;
@@ -1377,25 +1483,25 @@ div.elem-group.inlined input {
   display: inline-block;
 }
 
-textarea {
-  height: 35px;
+#additional-message {
+  height: auto;
+  border-radius: 2px;
+  border: 2px solid #777;
+  box-sizing: border-box;
+  font-size: 1.25em;
+  font-family: 'Nanum Gothic';
+  width: 100%;
+  padding: 1px;
 }
 
-hr {
-  border: 1px dotted #ccc;
-}
-
-button {
+#confirm-booking-btn {
   font-family: "Poppins", sans-serif;
   text-transform: uppercase;
   font-weight: 500;
   font-size: 14px;
   letter-spacing: 1px;
-  display: inline-block;
   padding: 10px 25px;
-  border-radius: 2px;
-  transition: 0.4s;
-  margin: 10px;
+  margin: 20px;
   border-radius: 4px;
   border: 2px solid #f03c02;
   color: #f03c02;
@@ -1403,18 +1509,7 @@ button {
   cursor: pointer;
 }
 
-button:hover {
+#confirm-booking-btn:hover {
   background-color: #fd5c28;
   color: white
-}
-
-.card-title {
-  font-size: 20px
-}
-
-.card-body {
-  border: 2px solid black;
-  padding: 20px;
-  box-shadow: 10px 5px 5px rgba(0,0,0,.7);
-  height: 520px
 }

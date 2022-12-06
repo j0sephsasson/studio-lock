@@ -4,47 +4,45 @@
 <div class="card text-center">
   <div class="card-body">
     <h5 class="card-title">Book Studio Time</h5>
-
     <form action="reservation.php" method="post">
       <div class="elem-group">
-        <label for="name">Studio Name: </label>
-        <input type="text" id="name" name="visitor_name" placeholder="" pattern=[A-Z\sa-z]{3,20} required>
+        <label for="name" id="label-name">Studio Name: </label>
+        <input type="text" id="input-name" name="visitor_name" placeholder="" pattern=[A-Z\sa-z]{3,20} required>
       </div>
       <div class="elem-group">
-        <label for="email">Email: </label>
-        <input type="email" id="email" name="visitor_email" placeholder="john.doe@email.com" required>
-      </div>
-      <hr>
-      <div class="elem-group inlined">
-        <label for="checkin-date">Date: </label>
-        <input type="date" id="checkin-date" name="checkin" required>
-      </div>
-      <div class="elem-group inlined">
-       <label for="checkin-date">Time: </label>
-       <select id=time-selection name="time_selection" required>
-         <option value="">Available Times</option>
-         <option value="">Time 1</option>
-         <option value="">Time 2</option>
-         <option value="">Time 3</option>
-         <option value="">Time 4</option>
-
-       </select>
+        <label for="email" id="label-email">Email: </label>
+        <input type="email" id="input-email" name="visitor_email" placeholder="" required>
       </div>
       <div class="elem-group">
-        <label for="room-selection">Studio Package: </label>
-        <select id="room-selection" name="room_preference" required>
+        <label for="package-selection" id="label-package">Studio Package: </label>
+        <select id="package-selection" name="package_selection" required>
             <option value=""></option>
             <option value="connecting">Option 1</option>
             <option value="adjoining">Option 2</option>
             <option value="adjacent">Option 3</option>
         </select>
       </div>
-      <hr>
-      <div class="elem-group">
-        <label for="message">Additional Comments: </label>
-        <textarea id="message" name="visitor_message" placeholder="Tell us anything else that might be important." required></textarea>
+      <br>
+      <div class="elem-group inlined">
+        <label for="booking-date" id="label-date">Date: </label>
+        <input type="date" id="booking-date" name="booking_date" required>
       </div>
-      <button type="submit">Confirm Booking</button>
+      <div class="elem-group inlined">
+       <label for="booking-time" id="label-time">Time: </label>
+       <select id=booking-time name="booking_time" required>
+         <option value="">Select time</option>
+         <option value="">Time 1</option>
+         <option value="">Time 2</option>
+         <option value="">Time 3</option>
+         <option value="">Time 4</option>
+       </select>
+      </div>
+      <br>
+      <div class="elem-group">
+        <label for="additional-message" id="label-message">Additional Comments: </label>
+        <textarea id="additional-message" name="additional_message" placeholder=""></textarea>
+      </div>
+      <button type="submit" id="confirm-booking-btn">Confirm Booking</button>
   </form>
  </div>
 </div>
