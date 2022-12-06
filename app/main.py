@@ -37,7 +37,7 @@ def booking():
     return render_template('booking.html', name=name)
 
 # checkout-session page of our web-app
-@main.route('/booking_post', methods=['GET', 'POST'])
+@main.route('/booking_post', methods=['POST'])
 @login_required
 def booking_post():
     stripe.api_key = os.getenv('STRIPE_TEST_KEY')
@@ -52,6 +52,7 @@ def booking_post():
                     'quantity': 3,
                 },
             ],
+            metadata={'studio_name': 'hello sir'},
             mode='payment',
             success_url='http://127.0.0.1:5000/success',
             cancel_url='http://127.0.0.1:5000/cancel',
@@ -61,6 +62,34 @@ def booking_post():
         return str(e)
 
     return redirect(checkout_session.url, code=303)
+
+# checkout-session webhook api of our web-app
+@main.route('/webhook', methods=['POST'])
+def webhook():
+    payload = request.data
+    sig_header = request.headers['STRIPE_SIGNATURE']
+    endpoint_secret = os.getenv('STRIPE_WEBHOOK_TESTING_KEY')
+
+    try:
+        event = stripe.Webhook.construct_event(
+            payload, sig_header, endpoint_secret
+        )
+    except ValueError as e:
+        # Invalid payload
+        raise e
+    except stripe.error.SignatureVerificationError as e:
+        # Invalid signature
+        raise e
+
+    # Handle the event
+    if event['type'] == 'payment_intent.succeeded':
+      payment_intent = event['data']['object']
+      print('payment success!')
+      print(payment_intent.get('metadata'))
+    else:
+      print('Unhandled event type {}'.format(event['type']))
+
+    return jsonify(success=True)
     
 # checkout-cancel page of our web-app
 @main.route('/cancel', methods=['GET', 'POST'])
