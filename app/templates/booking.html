@@ -2,16 +2,50 @@
 
 {% block content %}
 <div class="card text-center">
-    <div class="card-header">
-      Featured
-    </div>
-    <div class="card-body">
-      <h5 class="card-title">Special title treatment</h5>
-      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
-    </div>
-    <div class="card-footer text-muted">
-      2 days ago
-    </div>
-  </div>
+  <div class="card-body">
+    <h5 class="card-title">Book Studio Time</h5>
+
+    <form action="reservation.php" method="post">
+      <div class="elem-group">
+        <label for="name">Studio Name: </label>
+        <input type="text" id="name" name="visitor_name" placeholder="" pattern=[A-Z\sa-z]{3,20} required>
+      </div>
+      <div class="elem-group">
+        <label for="email">Email: </label>
+        <input type="email" id="email" name="visitor_email" placeholder="john.doe@email.com" required>
+      </div>
+      <hr>
+      <div class="elem-group inlined">
+        <label for="checkin-date">Date: </label>
+        <input type="date" id="checkin-date" name="checkin" required>
+      </div>
+      <div class="elem-group inlined">
+       <label for="checkin-date">Time: </label>
+       <select id=time-selection name="time_selection" required>
+         <option value="">Available Times</option>
+         <option value="">Time 1</option>
+         <option value="">Time 2</option>
+         <option value="">Time 3</option>
+         <option value="">Time 4</option>
+
+       </select>
+      </div>
+      <div class="elem-group">
+        <label for="room-selection">Studio Package: </label>
+        <select id="room-selection" name="room_preference" required>
+            <option value=""></option>
+            <option value="connecting">Option 1</option>
+            <option value="adjoining">Option 2</option>
+            <option value="adjacent">Option 3</option>
+        </select>
+      </div>
+      <hr>
+      <div class="elem-group">
+        <label for="message">Additional Comments: </label>
+        <textarea id="message" name="visitor_message" placeholder="Tell us anything else that might be important." required></textarea>
+      </div>
+      <button type="submit">Confirm Booking</button>
+  </form>
+ </div>
+</div>
 {% endblock %}

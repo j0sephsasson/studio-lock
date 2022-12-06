@@ -844,11 +844,11 @@ section {
   padding-top: 30px;
 }
 
-.portfolio-details .portfolio-description h2 {
+/* .portfolio-details .portfolio-description h6 {
   font-size: 26px;
   font-weight: 700;
   margin-bottom: 20px;
-}
+} */
 
 .portfolio-details .portfolio-description p {
   padding: 0;
@@ -1313,11 +1313,11 @@ body {
 # PROFILE
 --------------------------------------------------------------*/
 #profile {
-  max-height: 350px;
+  max-height: 500px;
   overflow-y: auto;
   width: 75%;
   margin: auto;
-  margin-top: 30px;
+  margin-top: 40px;
 }
 
 @media (max-width: 600px) {
@@ -1328,4 +1328,93 @@ body {
     margin: auto;
     margin-top: 100px;
   }
+}
+
+
+
+/*--------------------------------------------------------------
+# BOOKING
+--------------------------------------------------------------*/
+body {
+  width: 1300px;
+  margin: 0 auto;
+  padding: 50px;
+}
+
+div.elem-group {
+  margin: auto;
+}
+
+div.elem-group.inlined {
+  width: 49%;
+  display: inline-block;
+  float: left;
+  margin-left: 1%;
+  text-align: left
+}
+
+label {
+  display: block;
+  font-family: 'Nanum Gothic';
+  padding-bottom: 10px;
+  font-size: 1.25em;
+  padding: 1px;
+  text-align: left
+}
+
+input, select, textarea {
+  border-radius: 2px;
+  border: 2px solid #777;
+  box-sizing: border-box;
+  font-size: 1.25em;
+  font-family: 'Nanum Gothic';
+  width: 100%;
+  padding: 1px;
+}
+
+div.elem-group.inlined input {
+  width: 95%;
+  display: inline-block;
+}
+
+textarea {
+  height: 35px;
+}
+
+hr {
+  border: 1px dotted #ccc;
+}
+
+button {
+  font-family: "Poppins", sans-serif;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 10px 25px;
+  border-radius: 2px;
+  transition: 0.4s;
+  margin: 10px;
+  border-radius: 4px;
+  border: 2px solid #f03c02;
+  color: #f03c02;
+  background: #fff;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #fd5c28;
+  color: white
+}
+
+.card-title {
+  font-size: 20px
+}
+
+.card-body {
+  border: 2px solid black;
+  padding: 20px;
+  box-shadow: 10px 5px 5px rgba(0,0,0,.7);
+  height: 520px
 }
