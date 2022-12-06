@@ -20,9 +20,17 @@ def index():
 
 # profile page of our web-app
 @main.route('/profile', methods=['GET', 'POST'])
+@login_required
 def profile():
     name = current_user.name
     return render_template('profile.html', name=name)
+
+# booking page of our web-app
+@main.route('/booking', methods=['GET', 'POST'])
+@login_required
+def booking():
+    name = current_user.name
+    return render_template('booking.html', name=name)
 
 # studio_details page of our web-app
 @main.route('/studio_details', methods=['GET', 'POST'])
