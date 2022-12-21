@@ -3,10 +3,11 @@ import json
 import re, time
 import stripe
 import os
+import base64
 from flask import Blueprint, render_template, request, flash, session, jsonify
 from flask.helpers import url_for
 from . import db
-from .db_models import User, Studio
+from .db_models import User, Studio, StudioImages
 from dotenv import load_dotenv
 from flask_login import login_required, current_user
 from werkzeug.utils import redirect, secure_filename
@@ -36,12 +37,21 @@ def booking():
     name = current_user.name
     return render_template('booking.html', name=name)
 
-# checkout-session page of our web-app
-@main.route('/booking_post/<studio_name>', methods=['POST'])
+# checkout-session "handler" API of our web-app
+@main.route('/booking_handler', methods=['POST'])
 @login_required
-def booking_post():
+def booking_handler():
+    studio_name = request.form['studio_name']
+
+    # Redirect to the item URL with the item ID
+    return redirect(url_for('main.booking_post', studio_name=studio_name))
+
+# checkout-session page of our web-app
+@main.route('/booking_post/<studio_name>', methods=['GET'])
+@login_required
+def booking_post(studio_name):
     stripe.api_key = os.getenv('STRIPE_TEST_KEY')
-    STUDIO_PRICE_ID = os.getenv('STUDIO_NAME_PRICE_ID')
+    STUDIO_PRICE_ID = os.getenv(studio_name + '_price_id')
 
 
     session = stripe.checkout.Session.create(
@@ -58,8 +68,7 @@ def booking_post():
         automatic_tax={'enabled': True},
         mode='payment',
         metadata={
-        "customer_id": "123456",
-        "order_id": "987654"
+        "studio_name": studio_name
         }
     )
     return redirect(session.url, code=303)
@@ -72,10 +81,9 @@ def webhook():
 
     custom_data = session['metadata']
     print(custom_data)
-    return None
+    return 'success'
 
-
-# studio_details "handler" page of our web-app
+# studio_details "handler" API of our web-app
 @main.route('/studio_details', methods=['GET'])
 def studio_details():
     # Get the item ID from the request
@@ -89,9 +97,21 @@ def studio_details():
 def show_item(studio_name):
     # Retrieve the item with the specified ID
     studio = Studio.query.filter_by(name=studio_name).first()
-    if studio:
-        return render_template('studio_details.html', studio_name=studio.name)
 
+    images = StudioImages.query.filter_by(name=studio_name).first()
+    image_one = images.image_one
+    image_two = images.image_two
+    image_three = images.image_three
+
+    encoded_image_one = base64.b64encode(image_one).decode('utf-8')
+    encoded_image_two = base64.b64encode(image_two).decode('utf-8')
+    encoded_image_three = base64.b64encode(image_three).decode('utf-8')
+
+    if studio:
+        return render_template('studio_details.html', studio_name=studio.name,
+                            image_one=encoded_image_one, 
+                            image_two=encoded_image_two, 
+                            image_three=encoded_image_three)
 
 # checkout-cancel page of our web-app
 @main.route('/cancel', methods=['GET', 'POST'])
@@ -102,3 +122,21 @@ def cancel():
 @main.route('/success', methods=['GET', 'POST'])
 def success():
     return render_template('success.html')
+
+# misc. functions that should be in admin page
+# @main.route('/perform_fn', methods=['GET', 'POST'])
+# def perform_fn():
+#     with open('/Users/joesasson/Desktop/sites/studio-lock/app/static/img/fastlife/FL1.png', 'rb') as f:
+#         image_one = f.read()
+
+#     with open('/Users/joesasson/Desktop/sites/studio-lock/app/static/img/fastlife/FL2.png', 'rb') as f1:
+#         image_two = f1.read()
+
+#     with open('/Users/joesasson/Desktop/sites/studio-lock/app/static/img/fastlife/FL3.png', 'rb') as f2:
+#         image_three = f2.read()
+
+#     new_entry = StudioImages(name='Fastlife', image_one=image_one, image_two=image_two, image_three=image_three)
+#     db.session.add(new_entry)
+#     db.session.commit()
+
+#     return 'success'
