@@ -25,6 +25,13 @@ class StudioRates(db.Model):
     hourly_rate_extra_one = db.Column(db.Text, unique=False, nullable=True)
     hourly_rate_extra_two = db.Column(db.Text, unique=False, nullable=True)
 
+class StudioImages(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.Text, nullable=False, unique=True)
+    image_one = db.Column(db.BLOB, nullable=False)
+    image_two = db.Column(db.BLOB, nullable=False)
+    image_three = db.Column(db.BLOB, nullable=False)
+
 ## bookings table ##
 class Bookings(db.Model):
     id = db.Column(db.Integer, primary_key=True) # primary keys are required by SQLAlchemy
