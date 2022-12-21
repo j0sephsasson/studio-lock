@@ -18,9 +18,13 @@
 - [ ] Update UI to show spinners when processing message data
 
 ### 4. Studio Images Pulling From DB
-- [ ] Add images to 'studio_images' table in db
-- [ ] Dynamically load images from db and render to studio_details page
+- [X] Add images to 'studio_images' table in db
+- [X] Dynamically load images from db and render to studio_details page
 
 ### 5. Complete Checkout Flow
-- [ ] Dynamically load the studio information into checkout metadata and pass to webhook
+- [X] Dynamically load the studio information into checkout metadata and pass to webhook
 - [ ] Connect calendar APIs to automatically send invites (maybe add SMS integrations)
+
+### 6. Create 'Booking' Template / Form
+- [ ] Create form to allow arbitrary booking that you can choose yourself
+- [ ] Create server side functions to carry out the form actions
