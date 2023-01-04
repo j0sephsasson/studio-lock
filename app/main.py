@@ -7,7 +7,7 @@ import base64
 from flask import Blueprint, render_template, request, flash, session, jsonify
 from flask.helpers import url_for
 from . import db
-from .db_models import User, Studio, StudioImages
+from .db_models import User, Studio, StudioImages, StudioBookings
 from dotenv import load_dotenv
 from flask_login import login_required, current_user
 from werkzeug.utils import redirect, secure_filename
@@ -46,7 +46,16 @@ def booking_checker():
     time_slot = request.form['slot']
     engineer = request.form['engineer']
 
-    print(studio_name, date, time_slot, engineer)
+    bookings = StudioBookings.query.filter_by(studio_name=studio_name, date=date).all()
+
+    if len(bookings) == 3:
+        return 'failure'
+    else:
+        for b in bookings:
+            if b.slot_one == True and time_slot == '1':
+                return 'failure'
+            elif b.slot_two == True and time_slot == '2':
+                return 'failure'
 
     return 'success'
 
@@ -55,17 +64,18 @@ def booking_checker():
 @login_required
 def booking_handler():
     studio_name = request.form['book-studio']
-    # date = request.form['date']
-    # time_slot = request.form['slot']
-    # engineer = request.form['engineer']
+    date = request.form['book-date']
+    time_slot = request.form['book-time']
+    engineer = request.form['book-engineer']
 
     ## redirect to checkout & pass meta-data
-    return redirect(url_for('main.booking_post', studio_name=studio_name))
+    return redirect(url_for('main.booking_post', studio_name=studio_name,
+    date=date, time_slot=time_slot, engineer=engineer))
 
 # checkout-session page of our web-app
-@main.route('/booking_post/<studio_name>', methods=['GET'])
+@main.route('/booking_post/<studio_name>/<date>/<time_slot>/<engineer>', methods=['GET'])
 @login_required
-def booking_post(studio_name):
+def booking_post(studio_name, date, time_slot, engineer):
     stripe.api_key = os.getenv('STRIPE_TEST_KEY')
     STUDIO_PRICE_ID = os.getenv(studio_name + '_price_id')
 
@@ -76,7 +86,7 @@ def booking_post(studio_name):
             {
                 # Provide the exact Price ID (for example, pr_1234) of the product you want to sell
                 'price': STUDIO_PRICE_ID,
-                'quantity': 3,
+                'quantity': 1,
             },
         ],
         success_url='http://127.0.0.1:5000/success',
@@ -84,7 +94,10 @@ def booking_post(studio_name):
         automatic_tax={'enabled': True},
         mode='payment',
         metadata={
-        "studio_name": studio_name
+        "studio_name": studio_name,
+        "date": date,
+        "time_slot": time_slot,
+        "engineer": engineer
         }
     )
     return redirect(session.url, code=303)

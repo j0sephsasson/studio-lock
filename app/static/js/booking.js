@@ -56,12 +56,16 @@ function completeBooking() {
             engineer: engineer
         },
         success: function (response) {
-            console.log(response);
-            document.getElementById('bookStudio').value = studio;
-            document.getElementById('bookDate').value = date;
-            document.getElementById('bookTime').value = slot_time;
-            document.getElementById('bookEngineer').value = engineer;
-            document.getElementById('booking-form').submit();
+            if (response === 'success') {
+                document.getElementById('bookStudio').value = studio;
+                document.getElementById('bookDate').value = date;
+                document.getElementById('bookTime').value = slot_time;
+                document.getElementById('bookEngineer').value = engineer;
+                document.getElementById('booking-form').submit();
+            } else {
+                alert('That time is already booked. Please select a different date or time.')
+                location.reload();
+            }
         },
         error: function(xhr, status, error) {
             console.log('Error: ' + error);
