@@ -34,8 +34,7 @@ def profile():
 @main.route('/booking', methods=['GET', 'POST'])
 @login_required
 def booking():
-    name = current_user.name
-    return render_template('booking.html', name=name)
+    return render_template('booking.html')
 
 # checkout-session "handler" API of our web-app
 @main.route('/booking_handler', methods=['POST'])
@@ -126,16 +125,16 @@ def success():
 # misc. functions that should be in admin page
 # @main.route('/perform_fn', methods=['GET', 'POST'])
 # def perform_fn():
-#     with open('/Users/joesasson/Desktop/sites/studio-lock/app/static/img/fastlife/FL1.png', 'rb') as f:
+#     with open('/Users/joesasson/Desktop/sites/studio-lock/app/static/img/bullpen/bullpen.png', 'rb') as f:
 #         image_one = f.read()
 
-#     with open('/Users/joesasson/Desktop/sites/studio-lock/app/static/img/fastlife/FL2.png', 'rb') as f1:
+#     with open('/Users/joesasson/Desktop/sites/studio-lock/app/static/img/bullpen/bullpen2.png', 'rb') as f1:
 #         image_two = f1.read()
 
-#     with open('/Users/joesasson/Desktop/sites/studio-lock/app/static/img/fastlife/FL3.png', 'rb') as f2:
+#     with open('/Users/joesasson/Desktop/sites/studio-lock/app/static/img/bullpen/bullpen3.png', 'rb') as f2:
 #         image_three = f2.read()
 
-#     new_entry = StudioImages(name='Fastlife', image_one=image_one, image_two=image_two, image_three=image_three)
+#     new_entry = StudioImages(name='Bullpen', image_one=image_one, image_two=image_two, image_three=image_three)
 #     db.session.add(new_entry)
 #     db.session.commit()
 

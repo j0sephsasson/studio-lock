@@ -1326,11 +1326,11 @@ body {
 
 @media (max-width: 600px) {
   #profile {
-    max-height: 500px;
+    max-height: 30px;
     overflow-y: auto;
     width: 75%;
     margin: auto;
-    margin-top: 100px;
+    margin-top: 70px;
   }
 }
 
@@ -1341,13 +1341,85 @@ body {
 #booking-card {
   margin: auto;
   width: 75%;
+  margin-top: 85px;
+}
+
+.booking-col {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+#bookingModal {
   margin-top: 50px;
+}
+
+.booking-btn {
+  background-color: #f03c02;
+  color: white;
+  font-weight: bolder;
 }
 
 @media (max-width: 600px) {
   #booking-card {
     margin: auto;
     width: 75%;
-    margin-top: 175px;
+    margin-top: 50px;
   }
+
+  .booking-col {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .booking-btn {
+    background-color: #f03c02;
+    color: white;
+    font-weight: bolder;
+    margin-top: 20px;
+  }
+}
+
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-calendar-picker-indicator {
+  display: none;
+}
+
+input[type="date"] {
+  /* Add more padding to the element */
+  padding: 10px 20px;
+
+  /* Make the font size smaller */
+  font-size: 14px;
+
+  /* Set a custom width and height */
+  height: 30px;
+
+  /* Add a custom background color and border */
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+
+  /* Add a custom font and text color */
+  font-family: "Roboto", sans-serif;
+  color: #333;
+}
+
+input[type="date"]::-webkit-datetime-edit-fields-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+input[type="date"]::-webkit-datetime-edit-month-field,
+input[type="date"]::-webkit-datetime-edit-day-field,
+input[type="date"]::-webkit-datetime-edit-year-field {
+  width: calc(33.333% - 20px);
+  text-align: center;
+}
+
+/* Add hover and focus styles */
+input[type="date"]:hover,
+input[type="date"]:focus {
+  border-color: #888;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
 }
