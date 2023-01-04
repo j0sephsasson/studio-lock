@@ -77,6 +77,13 @@
           <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
             <button type="button" class="btn btn-success" onclick="completeBooking();">Book Now</button>
+          
+            <form id="booking-form" action="/booking_handler" method="POST" style="display:none;">
+              <input type="hidden" name="book-studio" id="bookStudio">
+              <input type="hidden" name="book-date" id="bookDate">
+              <input type="hidden" name="book-time" id="bookTime">
+              <input type="hidden" name="book-engineer" id="bookEngineer">
+            </form>            
           </div>
         </div>
       </div>

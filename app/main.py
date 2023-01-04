@@ -36,13 +36,30 @@ def profile():
 def booking():
     return render_template('booking.html')
 
+
+# booking checker
+@main.route('/booking_checker', methods=['POST'])
+@login_required
+def booking_checker():
+    studio_name = request.form['studio']
+    date = request.form['date']
+    time_slot = request.form['slot']
+    engineer = request.form['engineer']
+
+    print(studio_name, date, time_slot, engineer)
+
+    return 'success'
+
 # checkout-session "handler" API of our web-app
 @main.route('/booking_handler', methods=['POST'])
 @login_required
 def booking_handler():
-    studio_name = request.form['studio_name']
+    studio_name = request.form['book-studio']
+    # date = request.form['date']
+    # time_slot = request.form['slot']
+    # engineer = request.form['engineer']
 
-    # Redirect to the item URL with the item ID
+    ## redirect to checkout & pass meta-data
     return redirect(url_for('main.booking_post', studio_name=studio_name))
 
 # checkout-session page of our web-app
