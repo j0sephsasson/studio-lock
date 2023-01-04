@@ -8,7 +8,7 @@
             {{ messages[0] }}
         </div>
         {% endif %}
-    {% endwith %}
+  {% endwith %}
   <h3>Login</h3>
   <form method="POST" action="/login_post" id="myForm-login">
     <div class="user-box">
@@ -19,7 +19,7 @@
       <input type="password" name="password" required="">
       <label>Password</label>
     </div>
-    <a class="submit-login" href="#" id="login-btn">
+    <a class="submit-login" href="#" id="login-btn" onclick="submitLogin();">
       <span></span>
       <span></span>
       <span></span>
