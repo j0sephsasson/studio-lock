@@ -27,7 +27,7 @@ class StudioImages(db.Model):
 class StudioBookings(db.Model):
     id = db.Column(db.Integer, primary_key=True) # primary keys are required by SQLAlchemy
     studio_name = db.Column(db.Text, unique=False, nullable=False) ## studio name
-    username = db.Column(db.Text, unique=False, nullable=False) ## username
+    email = db.Column(db.Text, unique=False, nullable=False) ## email
     date = db.Column(db.Text, unique=False, nullable=False) ## date
     slot_one = db.Column(db.Boolean, default=False) ## slot is booked --> default False
     slot_two = db.Column(db.Boolean, default=False) ## slot is booked --> default False
@@ -37,6 +37,7 @@ class StudioBookings(db.Model):
 class UserBookings(db.Model):
     id = db.Column(db.Integer, primary_key=True) # primary keys are required by SQLAlchemy
     date = db.Column(db.Text, unique=False, nullable=False) ## date
+    email = db.Column(db.Text, unique=False, nullable=False) ## email
     studio_name = db.Column(db.Text, unique=False, nullable=False) ## studio
     price = db.Column(db.Text, unique=False, nullable=False) ## price
     time_slot = db.Column(db.Text, unique=False, nullable=False) ## time_slot

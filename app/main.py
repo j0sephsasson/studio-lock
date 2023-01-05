@@ -28,6 +28,9 @@ def index():
 @login_required
 def profile():
     name = current_user.name
+
+
+
     return render_template('profile.html', name=name)
 
 # booking page of our web-app
@@ -48,14 +51,13 @@ def booking_checker():
 
     bookings = StudioBookings.query.filter_by(studio_name=studio_name, date=date).all()
 
-    if len(bookings) == 3:
-        return 'failure'
-    else:
-        for b in bookings:
-            if b.slot_one == True and time_slot == '1':
-                return 'failure'
-            elif b.slot_two == True and time_slot == '2':
-                return 'failure'
+    if bookings:
+        if bookings[0].slot_one == True and time_slot == '1':
+            return 'failure'
+        elif bookings[0].slot_two == True and time_slot =='2':
+            return 'failure'
+        elif bookings[0].slot_three == True and time_slot == '3':
+            return 'failure'
 
     return 'success'
 
@@ -93,6 +95,7 @@ def booking_post(studio_name, date, time_slot, engineer):
         cancel_url='http://127.0.0.1:5000/cancel',
         automatic_tax={'enabled': True},
         mode='payment',
+        customer_email=current_user.email,
         metadata={
         "studio_name": studio_name,
         "date": date,
@@ -105,20 +108,54 @@ def booking_post(studio_name, date, time_slot, engineer):
 # checkout-session webhook api of our web-app
 @main.route('/webhook', methods=['POST'])
 def webhook():
-    payload = request.json
-    session = payload['data']['object']
+    payload_meta_data = request.json
+    session = payload_meta_data['data']['object']
     booking_data = session['metadata']
 
-    payload = request.get_data()
+    payload_event = request.get_data()
     sig_header = request.environ.get('HTTP_STRIPE_SIGNATURE')
     endpoint_secret = os.getenv('STRIPE_WEBHOOK_TESTING_KEY')
 
     event = stripe.Webhook.construct_event(
-        payload, sig_header, endpoint_secret
+        payload_event, sig_header, endpoint_secret
     )
 
     if event['type'] == 'checkout.session.completed':
-        print('payment recieved')
+        print('payment received...')
+
+        bookings = StudioBookings.query.filter_by(studio_name=booking_data['studio_name'], 
+                                                date=booking_data['date']).all()
+
+        if bookings:
+            print('booking found for {}'.format(booking_data['date']))
+            if booking_data['time_slot'] == '1':
+                bookings[0].slot_one = True
+            elif booking_data['time_slot'] == '2':
+                bookings[0].slot_two = True
+            elif booking_data['time_slot'] == '3':
+                bookings[0].slot_three = True
+        else:
+            print('no booking found, adding new booking to db...')
+            session_customer = event['data']['object']
+            customer_email = session_customer["customer_details"]["email"]
+
+            if booking_data['time_slot'] == '1':
+                new_booking = StudioBookings(studio_name=booking_data['studio_name'], 
+                                            date=booking_data['date'], email=customer_email,
+                                            slot_one=True)
+            elif booking_data['time_slot'] == '2':
+                new_booking = StudioBookings(studio_name=booking_data['studio_name'], 
+                                            date=booking_data['date'], email=customer_email,
+                                            slot_two=True)
+            elif booking_data['time_slot'] == '3':
+                new_booking = StudioBookings(studio_name=booking_data['studio_name'], 
+                                            date=booking_data['date'], email=customer_email,
+                                            slot_three=True)
+
+            db.session.add(new_booking)
+            
+        db.session.commit()
+        print('booking confirmed...')
         print(booking_data)
     
     return 'success'
@@ -136,7 +173,7 @@ def studio_details():
 @main.route('/studio_details/<studio_name>', methods=['GET'])
 def show_item(studio_name):
     # Retrieve the item with the specified ID
-    # studio = Studio.query.filter_by(name=studio_name).first()
+    studio = Studio.query.filter_by(name=studio_name).first()
 
     images = StudioImages.query.filter_by(name=studio_name).first()
     image_one = images.image_one
@@ -148,7 +185,8 @@ def show_item(studio_name):
     encoded_image_three = base64.b64encode(image_three).decode('utf-8')
 
     if images:
-        return render_template('studio_details.html', studio_name=studio_name, #studio.name,
+        return render_template('studio_details.html', 
+                            studio_name=studio.name,
                             image_one=encoded_image_one, 
                             image_two=encoded_image_two, 
                             image_three=encoded_image_three)
@@ -166,17 +204,19 @@ def success():
 # misc. functions that should be in admin page
 # @main.route('/perform_fn', methods=['GET', 'POST'])
 # def perform_fn():
-#     with open('/Users/joesasson/Desktop/sites/studio-lock/app/static/img/bullpen/bullpen.png', 'rb') as f:
+#     with open('/Users/joesasson/Desktop/sites/studio-lock/app/static/img/breezi/_DSC4549.jpg', 'rb') as f:
 #         image_one = f.read()
 
-#     with open('/Users/joesasson/Desktop/sites/studio-lock/app/static/img/bullpen/bullpen2.png', 'rb') as f1:
+#     with open('/Users/joesasson/Desktop/sites/studio-lock/app/static/img/breezi/_DSC4551.jpg', 'rb') as f1:
 #         image_two = f1.read()
 
-#     with open('/Users/joesasson/Desktop/sites/studio-lock/app/static/img/bullpen/bullpen3.png', 'rb') as f2:
+#     with open('/Users/joesasson/Desktop/sites/studio-lock/app/static/img/breezi/_DSC4563.jpg', 'rb') as f2:
 #         image_three = f2.read()
 
-#     new_entry = StudioImages(name='Bullpen', image_one=image_one, image_two=image_two, image_three=image_three)
+#     new_entry = StudioImages(name='Breezi', image_one=image_one, image_two=image_two, image_three=image_three)
+
 #     db.session.add(new_entry)
+
 #     db.session.commit()
 
 #     return 'success'
