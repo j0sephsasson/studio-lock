@@ -107,9 +107,20 @@ def booking_post(studio_name, date, time_slot, engineer):
 def webhook():
     payload = request.json
     session = payload['data']['object']
+    booking_data = session['metadata']
 
-    custom_data = session['metadata']
-    print(custom_data)
+    payload = request.get_data()
+    sig_header = request.environ.get('HTTP_STRIPE_SIGNATURE')
+    endpoint_secret = os.getenv('STRIPE_WEBHOOK_TESTING_KEY')
+
+    event = stripe.Webhook.construct_event(
+        payload, sig_header, endpoint_secret
+    )
+
+    if event['type'] == 'checkout.session.completed':
+        print('payment recieved')
+        print(booking_data)
+    
     return 'success'
 
 # studio_details "handler" API of our web-app
@@ -125,7 +136,7 @@ def studio_details():
 @main.route('/studio_details/<studio_name>', methods=['GET'])
 def show_item(studio_name):
     # Retrieve the item with the specified ID
-    studio = Studio.query.filter_by(name=studio_name).first()
+    # studio = Studio.query.filter_by(name=studio_name).first()
 
     images = StudioImages.query.filter_by(name=studio_name).first()
     image_one = images.image_one
@@ -136,8 +147,8 @@ def show_item(studio_name):
     encoded_image_two = base64.b64encode(image_two).decode('utf-8')
     encoded_image_three = base64.b64encode(image_three).decode('utf-8')
 
-    if studio:
-        return render_template('studio_details.html', studio_name=studio.name,
+    if images:
+        return render_template('studio_details.html', studio_name=studio_name, #studio.name,
                             image_one=encoded_image_one, 
                             image_two=encoded_image_two, 
                             image_three=encoded_image_three)
