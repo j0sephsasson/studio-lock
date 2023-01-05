@@ -130,6 +130,9 @@ def webhook():
         print('payment received...')
         print('adding data to userbookings table...')
 
+        session_customer = event['data']['object']
+        customer_email = session_customer["customer_details"]["email"]
+
         new_user_booking = UserBookings(date=booking_data['date'], email=customer_email,
                                             studio_name=booking_data['studio_name'],
                                             price=int(session_customer['amount_total'])*0.01,
@@ -142,6 +145,7 @@ def webhook():
 
         if bookings:
             print('booking found at {} on {}'.format(booking_data['studio_name'], booking_data['date']))
+            
             if booking_data['time_slot'] == '1':
                 bookings[0].slot_one = True
             elif booking_data['time_slot'] == '2':
@@ -150,8 +154,6 @@ def webhook():
                 bookings[0].slot_three = True
         else:
             print('no booking found, adding new booking to db...')
-            session_customer = event['data']['object']
-            customer_email = session_customer["customer_details"]["email"]
 
             if booking_data['time_slot'] == '1':
                 new_studio_booking = StudioBookings(studio_name=booking_data['studio_name'], 
