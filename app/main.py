@@ -128,12 +128,20 @@ def webhook():
 
     if event['type'] == 'checkout.session.completed':
         print('payment received...')
+        print('adding data to userbookings table...')
+
+        new_user_booking = UserBookings(date=booking_data['date'], email=customer_email,
+                                            studio_name=booking_data['studio_name'],
+                                            price=int(session_customer['amount_total'])*0.01,
+                                            time_slot=time_slots[booking_data['time_slot']])
+        
+        db.session.add(new_user_booking)
 
         bookings = StudioBookings.query.filter_by(studio_name=booking_data['studio_name'], 
                                                 date=booking_data['date']).all()
 
         if bookings:
-            print('booking found for {}'.format(booking_data['date']))
+            print('booking found at {} on {}'.format(booking_data['studio_name'], booking_data['date']))
             if booking_data['time_slot'] == '1':
                 bookings[0].slot_one = True
             elif booking_data['time_slot'] == '2':
@@ -158,13 +166,7 @@ def webhook():
                                             date=booking_data['date'],
                                             slot_three=True)
 
-            new_user_booking = UserBookings(date=booking_data['date'], email=customer_email,
-                                            studio_name=booking_data['studio_name'],
-                                            price=int(session_customer['amount_total'])*0.01,
-                                            time_slot=time_slots[booking_data['time_slot']])
-
             db.session.add(new_studio_booking)
-            db.session.add(new_user_booking)
             
         db.session.commit()
         print('booking confirmed...')
