@@ -11,7 +11,6 @@
 
   <!-- Favicons -->
   <link href="static/img/favicon.png" rel="icon">
-  <link href="static/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Muli:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
@@ -136,14 +135,15 @@
             </div>
           </div>
 
+          {% if studio_name == 'Fastlife' %}
           <div class="col-lg-4">
             <div class="portfolio-info">
               <h3>FASTLIFE STUDIOS</h3>
               <ul>
                 <li><strong>Address</strong>: 584 8th Ave #706, New York, NY 10018</li>
                 <li><strong>Phone</strong>: 347-201-2620</li>
-                <li><strong>Rates</strong>: xxx</li>
-                <li><strong>Hours</strong>: xxx</li>
+                <li><strong>Rates</strong>: $55/HR - No Engineer</li>
+                <li><strong>Hours</strong>: $70/HR - With Engineer</li>
                 <br>
                 <form action="/booking_handler" method="post">
                   <li><button type="submit" class="btn btn-outline" style="color:white;background-color: #fd6f41;">Book Now</button></li>
@@ -179,6 +179,104 @@
               </ul>
             </div>
           </div>
+          {% endif %}
+
+          {% if studio_name == 'Breezi' %}
+          <div class="col-lg-4">
+            <div class="portfolio-info">
+              <h3>BREEZI STUDIOS</h3>
+              <ul>
+                <li><strong>Address</strong>: 13 East 37th St, Floor 8, New York, NY 10016</li>
+                <li><strong>Phone</strong>: 516-510-8902</li>
+                <li><strong>Rates</strong>: $55/HR - No Engineer</li>
+                <li><strong>Hours</strong>: $75/HR - With Engineer</li>
+                <br>
+                <form action="/booking_handler" method="post">
+                  <li><button type="submit" class="btn btn-outline" style="color:white;background-color: #fd6f41;">Book Now</button></li>
+                  <input type="hidden" name="studio_name" value="{{ studio_name }}">
+                </form>
+                <div class="portfolio-description">
+                  <h6><strong>Equipment</strong></h6>
+                    <ul>
+                      <li><strong>Mics:</strong> Neumann tlm 102, Shure sm7b, Shure drumset kit mic (81s)</li>
+                    </ul>
+                  <br>
+                  <h6><strong>Instruments</strong></h6>
+                    <ul>
+                      <li>Fender guitar and bass, Vintage Rhodes mk1, Vintage Juno 106, Saxophone, NI Koomplete controller, Fender amp, Fender amp head, Fender bass amp, Full Drumkit (yamaha)</li>
+                    </ul>
+                  <br>
+                  <h6><strong>Software</strong></h6>
+                    <ul>
+                      <li>Imac i9 with 40gbs procesessing, UAD apollo x16 fully unlocked, 1073 Neve preamp, Nero control center, UAD apollo twin, Furman power supply, Audio technica headphones</li>
+                    </ul>
+                  <br>
+                  <h6><strong>DJ Equiptment</strong></h6>
+                    <ul>
+                      <li>Pioneer DDJs, Traktor s8</li>
+                    </ul>
+                  <br>
+                  <h6><strong>Speakers</strong></h6>
+                    <ul>
+                      <li>Presonus s8 speakers, Tannoys, Krk 5s</li>
+                    </ul>
+                </div>
+
+              </ul>
+            </div>
+          </div>
+          {% endif %}
+
+          {% if studio_name == 'Bullpen' %}
+          <div class="col-lg-4">
+            <div class="portfolio-info">
+              <h3>THE BULLPEN</h3>
+              <ul>
+                <li><strong>Address</strong>: 123 Madison Ave, Floor 12, New York, NY 10000</li>
+                <li><strong>Phone</strong>: 917-971-9412</li>
+                <li><strong>Rates</strong>: $55/HR - No Engineer</li>
+                <li><strong>Hours</strong>: $75/HR - With Engineer</li>
+                <br>
+                <form action="/booking_handler" method="post">
+                  <li><button type="submit" class="btn btn-outline" style="color:white;background-color: #fd6f41;">Book Now</button></li>
+                  <input type="hidden" name="studio_name" value="{{ studio_name }}">
+                </form>
+                <div class="portfolio-description">
+                  <h6><strong>Equipment</strong></h6>
+                    <ul>
+                      <li><strong>Mics:</strong> WARM AUDIO 251, Shure sm7b, AVATONE C12, GAUGE 87, SM57 (2), SM58 (2), EXTENSIVE MIC COLLECTION AVAILABLE FOR RENT THROUGH ENGINE ROOM AUDIO</li>
+                    </ul>
+                  <br>
+                  <h6><strong>Plugins</strong></h6>
+                    <ul>
+                      <li>WAVS, UAD, PLUG-IN ALLIANCE, NATIVE INSTRUMENTS, ANTARES AUTO TUNE, CELEMONY, AVID, IZOTOPE</li>
+                    </ul>
+                  <br>
+                  <h6><strong>Software</strong></h6>
+                    <ul>
+                      <li>27” i Mac 32GB Ram UAD APOLLO X8</li>
+                    </ul>
+                  <br>
+                  <h6><strong>DAW</strong></h6>
+                    <ul>
+                      <li>PRO TOOLS, LOGIC, ABELTON, FL STUDIO</li>
+                    </ul>
+                  <br>
+                  <h6><strong>Outboard</strong></h6>
+                    <ul>
+                      <li>AVALON 737 VST (2), EMPIRICAL LABS DISTRESSOR, WARM AUDIO 73, DRAWMER 251 STEREO COMPRESSOR, TCL ELECTRONIC FX</li>
+                    </ul>
+                  <br>
+                  <h6><strong>Monitoring</strong></h6>
+                    <ul>
+                      <li>DRAWMER MC3.1, YAMAHA HS8, YAMAHA MSP5, RED CUE BOX HEADPHONE DISTRIBUTION</li>
+                    </ul>
+                </div>
+
+              </ul>
+            </div>
+          </div>
+          {% endif %}
 
         </div>
 
@@ -197,8 +295,6 @@
           <div class="col-lg-3 col-md-6 footer-contact">
             <h3>Studio Lock</h3>
             <p>
-              <br>
-              <br>
               <strong>Email:</strong> contact@example.com<br>
             </p>
           </div>
