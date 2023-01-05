@@ -7,7 +7,7 @@ import base64
 from flask import Blueprint, render_template, request, flash, session, jsonify
 from flask.helpers import url_for
 from . import db
-from .db_models import User, Studio, StudioImages, StudioBookings
+from .db_models import User, Studio, StudioImages, StudioBookings, UserBookings
 from dotenv import load_dotenv
 from flask_login import login_required, current_user
 from werkzeug.utils import redirect, secure_filename
@@ -28,10 +28,14 @@ def index():
 @login_required
 def profile():
     name = current_user.name
+    email = current_user.email
 
+    bookings = UserBookings.query.filter_by(email=email).all()
 
+    if not bookings:
+        bookings=False
 
-    return render_template('profile.html', name=name)
+    return render_template('profile.html', name=name, bookings=bookings)
 
 # booking page of our web-app
 @main.route('/booking', methods=['GET', 'POST'])
@@ -120,6 +124,8 @@ def webhook():
         payload_event, sig_header, endpoint_secret
     )
 
+    time_slots = {'1':'12PM-4PM', '2':'4PM-8PM', '3':'8PM-12AM'}
+
     if event['type'] == 'checkout.session.completed':
         print('payment received...')
 
@@ -140,19 +146,25 @@ def webhook():
             customer_email = session_customer["customer_details"]["email"]
 
             if booking_data['time_slot'] == '1':
-                new_booking = StudioBookings(studio_name=booking_data['studio_name'], 
-                                            date=booking_data['date'], email=customer_email,
+                new_studio_booking = StudioBookings(studio_name=booking_data['studio_name'], 
+                                            date=booking_data['date'],
                                             slot_one=True)
             elif booking_data['time_slot'] == '2':
-                new_booking = StudioBookings(studio_name=booking_data['studio_name'], 
-                                            date=booking_data['date'], email=customer_email,
+                new_studio_booking = StudioBookings(studio_name=booking_data['studio_name'], 
+                                            date=booking_data['date'],
                                             slot_two=True)
             elif booking_data['time_slot'] == '3':
-                new_booking = StudioBookings(studio_name=booking_data['studio_name'], 
-                                            date=booking_data['date'], email=customer_email,
+                new_studio_booking = StudioBookings(studio_name=booking_data['studio_name'], 
+                                            date=booking_data['date'],
                                             slot_three=True)
 
-            db.session.add(new_booking)
+            new_user_booking = UserBookings(date=booking_data['date'], email=customer_email,
+                                            studio_name=booking_data['studio_name'],
+                                            price=int(session_customer['amount_total'])*0.01,
+                                            time_slot=time_slots[booking_data['time_slot']])
+
+            db.session.add(new_studio_booking)
+            db.session.add(new_user_booking)
             
         db.session.commit()
         print('booking confirmed...')
@@ -204,18 +216,24 @@ def success():
 # misc. functions that should be in admin page
 # @main.route('/perform_fn', methods=['GET', 'POST'])
 # def perform_fn():
-#     with open('/Users/joesasson/Desktop/sites/studio-lock/app/static/img/breezi/_DSC4549.jpg', 'rb') as f:
-#         image_one = f.read()
+#     # with open('/Users/joesasson/Desktop/sites/studio-lock/app/static/img/bullpen/bullpen.png', 'rb') as f:
+#     #     image_one = f.read()
 
-#     with open('/Users/joesasson/Desktop/sites/studio-lock/app/static/img/breezi/_DSC4551.jpg', 'rb') as f1:
-#         image_two = f1.read()
+#     # with open('/Users/joesasson/Desktop/sites/studio-lock/app/static/img/bullpen/bullpen2.png', 'rb') as f1:
+#     #     image_two = f1.read()
 
-#     with open('/Users/joesasson/Desktop/sites/studio-lock/app/static/img/breezi/_DSC4563.jpg', 'rb') as f2:
-#         image_three = f2.read()
+#     # with open('/Users/joesasson/Desktop/sites/studio-lock/app/static/img/bullpen/bullpen3.png', 'rb') as f2:
+#     #     image_three = f2.read()
 
-#     new_entry = StudioImages(name='Breezi', image_one=image_one, image_two=image_two, image_three=image_three)
+#     # new_entry = StudioImages(name='Bullpen', image_one=image_one, image_two=image_two, image_three=image_three)
 
-#     db.session.add(new_entry)
+#     fastlife = Studio(name='Fastlife', phone_number='347-201-2620')
+#     breezi = Studio(name='Breezi', phone_number='516-510-8902')
+#     bullpen = Studio(name='Bullpen', phone_number='917-971-9412')
+
+#     db.session.add(fastlife)
+#     db.session.add(breezi)
+#     db.session.add(bullpen)
 
 #     db.session.commit()
 

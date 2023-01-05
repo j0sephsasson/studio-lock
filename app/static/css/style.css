@@ -1324,17 +1324,20 @@ body {
   margin-top: 70px;
 }
 
-@media (max-width: 600px) {
+@media screen and (max-width: 600px) {
+  #profile-th {
+    font-size: 18px;
+  }
+  #profile-tr td {
+    padding: 15px;
+    font-size: 16px;
+  }
   #profile {
-    max-height: 30px;
+    width: 95%;
+    height: 500px;
     overflow-y: auto;
-    width: 75%;
-    margin: auto;
-    margin-top: 70px;
   }
 }
-
-
 /*--------------------------------------------------------------
 # BOOKING
 --------------------------------------------------------------*/

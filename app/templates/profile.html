@@ -7,10 +7,11 @@
     </div>
     <div class="card-body">
       <br>
-      <h5>Active Bookings</h5>
+      <h5 style="margin-bottom: 25px;">My Bookings</h5>
       <table class="table table-striped">
+        {% if bookings %}
         <thead>
-          <tr>
+          <tr id="profile-th">
             <th scope="col">Date</th>
             <th scope="col">Studio</th>
             <th scope="col">Time</th>
@@ -18,60 +19,20 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>100</td>
+          {% for b in bookings %}
+          <tr id="profile-tr">
+            <th scope="row">{{ b.date }}</th>
+            <td>{{ b.studio_name }}</td>
+            <td>{{ b.time_slot }}</td>
+            <td>$ {{ b.price }}</td>
           </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>100</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>100</td>
-          </tr>
+          {% endfor %}
         </tbody>
-      </table>
+        {% endif %}
 
-      <br>
-      <br>
-
-      <h5>Booking History</h5>
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th scope="col">Date</th>
-            <th scope="col">Studio</th>
-            <th scope="col">Time</th>
-            <th scope="col">Price</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>100</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>100</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>100</td>
-          </tr>
-        </tbody>
+        {% if not bookings %}
+        <h3>You have no booking history. Checkout our <a href="/#studios" id="profile-get-started-btn">studios</a> to get started!</h3>
+        {% endif %}
       </table>
     </div>
   </div>
