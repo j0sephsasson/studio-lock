@@ -76,7 +76,7 @@
                 <ul>
                     <li><a href="/">Home</a></li>
                     <li><a href="/#studios">Studios</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="/#contact">Contact</a></li>
                     {% if not current_user.is_authenticated %}
                     <li><a href="{{ url_for('auth.login') }}">Login</a></li>
                     <li><a href="{{ url_for('auth.signup') }}">Signup</a></li>
@@ -180,79 +180,6 @@
                                     class="bx bx-link"></i></a>
                         </div>
                     </div>
-
-                    <!-- <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-                        <img src="static/img/portfolio/portfolio-4.jpg" class="img-fluid" alt="">
-                        <div class="portfolio-info">
-                            <h4>Card 2</h4>
-                            <p>Card</p>
-                            <a href="static/img/portfolio/portfolio-4.jpg" data-gallery="portfolioGallery"
-                                class="portfolio-lightbox preview-link" title="Card 2"><i class="bx bx-plus"></i></a>
-                            <a href="portfolio-details.html" class="details-link" title="More Details"><i
-                                    class="bx bx-link"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-                        <img src="static/img/portfolio/portfolio-5.jpg" class="img-fluid" alt="">
-                        <div class="portfolio-info">
-                            <h4>Web 2</h4>
-                            <p>Web</p>
-                            <a href="static/img/portfolio/portfolio-5.jpg" data-gallery="portfolioGallery"
-                                class="portfolio-lightbox preview-link" title="Web 2"><i class="bx bx-plus"></i></a>
-                            <a href="portfolio-details.html" class="details-link" title="More Details"><i
-                                    class="bx bx-link"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-                        <img src="static/img/portfolio/portfolio-6.jpg" class="img-fluid" alt="">
-                        <div class="portfolio-info">
-                            <h4>App 3</h4>
-                            <p>App</p>
-                            <a href="static/img/portfolio/portfolio-6.jpg" data-gallery="portfolioGallery"
-                                class="portfolio-lightbox preview-link" title="App 3"><i class="bx bx-plus"></i></a>
-                            <a href="portfolio-details.html" class="details-link" title="More Details"><i
-                                    class="bx bx-link"></i></a>
-                        </div>
-                    </div> -->
-
-                    <!-- <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-                        <img src="static/img/portfolio/portfolio-7.jpg" class="img-fluid" alt="">
-                        <div class="portfolio-info">
-                            <h4>Card 1</h4>
-                            <p>Card</p>
-                            <a href="static/img/portfolio/portfolio-7.jpg" data-gallery="portfolioGallery"
-                                class="portfolio-lightbox preview-link" title="Card 1"><i class="bx bx-plus"></i></a>
-                            <a href="portfolio-details.html" class="details-link" title="More Details"><i
-                                    class="bx bx-link"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-                        <img src="static/img/portfolio/portfolio-8.jpg" class="img-fluid" alt="">
-                        <div class="portfolio-info">
-                            <h4>Card 3</h4>
-                            <p>Card</p>
-                            <a href="static/img/portfolio/portfolio-8.jpg" data-gallery="portfolioGallery"
-                                class="portfolio-lightbox preview-link" title="Card 3"><i class="bx bx-plus"></i></a>
-                            <a href="portfolio-details.html" class="details-link" title="More Details"><i
-                                    class="bx bx-link"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-                        <img src="static/img/portfolio/portfolio-9.jpg" class="img-fluid" alt="">
-                        <div class="portfolio-info">
-                            <h4>Web 3</h4>
-                            <p>Web</p>
-                            <a href="static/img/portfolio/portfolio-9.jpg" data-gallery="portfolioGallery"
-                                class="portfolio-lightbox preview-link" title="Web 3"><i class="bx bx-plus"></i></a>
-                            <a href="portfolio-details.html" class="details-link" title="More Details"><i
-                                    class="bx bx-link"></i></a>
-                        </div>
-                    </div> -->
-
                 </div>
 
             </div>
@@ -274,6 +201,43 @@
 
             </div>
         </section><!-- End Cta Section -->
+
+        <!-- ======= Contact Section ======= -->
+        <section id="contact" style="color: #fff; padding: 30px 0;">
+            <div class="container">
+              <div class="row justify-content-center" style="text-align: center;">
+                <h2 class="card-title" style="margin-bottom: 30px; color: #574741;">Contact Us</h2>
+                <p class="card-text" style="margin-bottom: 30px; color: #574741;">Use the form below to send us a message and we will get back to you as soon as possible.</p>
+                <div class="col-md-8">
+                  <div class="card" style="box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);">
+                    <div class="card-body" style="text-align: center;">
+                        
+                      <form>
+                        <div class="form-group" style="margin-bottom: 20px;">
+                          <label for="name" style="color: #f03c02;">Name</label>
+                          <input type="text" class="form-control" id="name" placeholder="Your name">
+                        </div>
+                        <div class="form-group" style="margin-bottom: 20px;">
+                          <label for="email" style="color: #f03c02;">Email</label>
+                          <input type="email" class="form-control" id="email" placeholder="Your email">
+                        </div>
+                        <div class="form-group" style="margin-bottom: 20px;">
+                          <label for="subject" style="color: #f03c02;">Subject</label>
+                          <input type="text" class="form-control" id="subject" placeholder="Subject">
+                        </div>
+                        <div class="form-group" style="margin-bottom: 20px;">
+                          <label for="message" style="color: #f03c02;">Message</label>
+                          <textarea class="form-control" id="message" rows="3" placeholder="Your message"></textarea>
+                        </div>
+                        <button type="submit" id="submit-button" class="btn btn-primary" style="background-color: #f03c02; border-color: #f03c02;">Send Message</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </section><!-- End Contact Section -->
+          
 
     </main><!-- End #main -->
 
