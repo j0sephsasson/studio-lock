@@ -1,3 +1,11 @@
+function checkDate(date) {
+    const currentDate = new Date();
+    const selectedDate = new Date(date);
+    return selectedDate <= currentDate;
+};
+  
+  
+
 function populateModal(event) {
     var studio = document.getElementById('studio_name').value;
     var date = document.getElementById('date').value;
@@ -9,7 +17,12 @@ function populateModal(event) {
         alert('Please Select All Options.')
         location.reload();
         return;
-    }
+    } 
+
+    if (checkDate(date)) {
+        alert('Selected date is before current date.')
+        location.reload();
+    } 
 
     var time_object = {
         '1': '12PM-4PM',
