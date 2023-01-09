@@ -9,6 +9,11 @@ class User(UserMixin, db.Model):
     email = db.Column(db.Text, unique=True, nullable=False)
     password = db.Column(db.Text, unique=False, nullable=False)
 
+## newsletter subscribers ##
+class Subscribers(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.Text, nullable=False, unique=True)
+
 ## studios table ##
 class Studio(db.Model):
     id = db.Column(db.Integer, primary_key=True) # primary keys are required by SQLAlchemy

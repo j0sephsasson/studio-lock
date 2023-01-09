@@ -1,4 +1,4 @@
-(function() {
+(function () {
   "use strict";
 
   /**
@@ -91,7 +91,7 @@
   /**
    * Mobile nav toggle
    */
-  on('click', '.mobile-nav-toggle', function(e) {
+  on('click', '.mobile-nav-toggle', function (e) {
     select('#navbar').classList.toggle('navbar-mobile')
     this.classList.toggle('bi-list')
     this.classList.toggle('bi-x')
@@ -100,7 +100,7 @@
   /**
    * Mobile nav dropdowns activate
    */
-  on('click', '.navbar .dropdown > a', function(e) {
+  on('click', '.navbar .dropdown > a', function (e) {
     if (select('#navbar').classList.contains('navbar-mobile')) {
       e.preventDefault()
       this.nextElementSibling.classList.toggle('dropdown-active')
@@ -110,7 +110,7 @@
   /**
    * Scrool with ofset on links with a class name .scrollto
    */
-  on('click', '.scrollto', function(e) {
+  on('click', '.scrollto', function (e) {
     if (select(this.hash)) {
       e.preventDefault()
 
@@ -156,7 +156,7 @@
     new Waypoint({
       element: skilsContent,
       offset: '80%',
-      handler: function(direction) {
+      handler: function (direction) {
         let progress = select('.progress .progress-bar', true);
         progress.forEach((el) => {
           el.style.width = el.getAttribute('aria-valuenow') + '%'
@@ -178,9 +178,9 @@
 
       let portfolioFilters = select('#portfolio-flters li', true);
 
-      on('click', '#portfolio-flters li', function(e) {
+      on('click', '#portfolio-flters li', function (e) {
         e.preventDefault();
-        portfolioFilters.forEach(function(el) {
+        portfolioFilters.forEach(function (el) {
           el.classList.remove('filter-active');
         });
         this.classList.add('filter-active');
@@ -188,7 +188,7 @@
         portfolioIsotope.arrange({
           filter: this.getAttribute('data-filter')
         });
-        portfolioIsotope.on('arrangeComplete', function() {
+        portfolioIsotope.on('arrangeComplete', function () {
           AOS.refresh()
         });
       }, true);
@@ -241,36 +241,61 @@ function sendMail() {
   var message = document.getElementById('contact-form-message').value;
 
   if (name == null || name == "", email == null || email == "", subject == null || subject == "", message == null || message == "") {
-      alert("Please Fill All Required Fields");
-      window.location.href = '/#contact'
+    alert("Please Fill All Required Fields");
+    window.location.href = '/#contact'
   } else {
-      document.getElementById('sendmailLoadBTN').style.display = 'initial';
-      document.getElementById('submit-button').style.display = 'none';
+    document.getElementById('sendmailLoadBTN').style.display = 'initial';
+    document.getElementById('submit-button').style.display = 'none';
 
-      var fd = new FormData();
-      fd.append('name', name);
-      fd.append('email', email);
-      fd.append('subject', subject);
-      fd.append('message', message);
+    var fd = new FormData();
+    fd.append('name', name);
+    fd.append('email', email);
+    fd.append('subject', subject);
+    fd.append('message', message);
 
-      $j.ajax({
-          type: "POST",
-          url: '/contact',
-          data: fd,
-          processData: false,
-          contentType: false
-      }).done(function (err, req, resp) {
-          document.getElementById('sendmailLoadBTN').style.display = 'none';
-          document.getElementById('contact-form-response').innerHTML = resp.responseJSON.resp;
-          document.getElementById('contact-form-respdiv').style.display = 'initial';
-          setTimeout(function () {
-              $j('#contact-form-respdiv').fadeOut('slow');
-          }, 7000);
-          document.getElementById('submit-button').style.display = 'initial';
-          document.getElementById('contact-form-name').value = null;
-          document.getElementById('contact-form-email').value = null;
-          document.getElementById('contact-form-subject').value = null;
-          document.getElementById('contact-form-message').value = null;
-      });
+    $j.ajax({
+      type: "POST",
+      url: '/contact',
+      data: fd,
+      processData: false,
+      contentType: false
+    }).done(function (err, req, resp) {
+      document.getElementById('sendmailLoadBTN').style.display = 'none';
+      document.getElementById('contact-form-response').innerHTML = resp.responseJSON.resp;
+      document.getElementById('contact-form-respdiv').style.display = 'initial';
+      setTimeout(function () {
+        $j('#contact-form-respdiv').fadeOut('slow');
+      }, 7000);
+      document.getElementById('submit-button').style.display = 'initial';
+      document.getElementById('contact-form-name').value = null;
+      document.getElementById('contact-form-email').value = null;
+      document.getElementById('contact-form-subject').value = null;
+      document.getElementById('contact-form-message').value = null;
+    });
   };
+};
+
+// subscribe to newsletter
+function subscribe(event) {
+  event.preventDefault();
+
+  var email = document.getElementById('subscriber-email').value;
+
+  var fd = new FormData();
+  fd.append('email', email);
+
+  $j.ajax({
+      type: "POST",
+      url: '/subscribe',
+      data: fd,
+      processData: false,
+      contentType: false
+  }).done(function (err, req, resp) {
+      document.getElementById('response').innerHTML = resp.responseJSON.resp;
+      document.getElementById('response').style.display = 'initial';
+      document.getElementById('subscriber-email').value = null;
+      setTimeout(function () {
+          $j('#response').fadeOut('slow');
+      }, 7000);
+  });
 };

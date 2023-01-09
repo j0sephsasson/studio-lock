@@ -6,8 +6,9 @@ import os
 import base64
 from flask import Blueprint, render_template, request, flash, session, jsonify
 from flask.helpers import url_for
-from . import db
-from .db_models import User, Studio, StudioImages, StudioBookings, UserBookings
+from flask_mail import Message
+from . import db, mail
+from .db_models import User, Studio, StudioImages, StudioBookings, UserBookings, Subscribers
 from dotenv import load_dotenv
 from flask_login import login_required, current_user
 from werkzeug.utils import redirect, secure_filename
@@ -217,19 +218,46 @@ def cancel():
 def success():
     return render_template('success.html')
 
+# subscribe API of web-app
+@main.route('/subscribe', methods=['POST'])
+def subscribe():
+    try:
+        email = str(request.form['email'])
+
+        new_sub = Subscribers(email=email)
+        db.session.add(new_sub)
+        db.session.commit()
+
+        return jsonify(resp='Subscribed Successfully!')
+    except:
+        return jsonify(resp="Please log in to subscribe. If you are logged in, this means you're already subscribed.")
+
 # contact api of our web-app
 @main.route('/contact', methods=['POST'])
 def contact():
-    name = request.form['name']
-    email = request.form['email']
-    subject = request.form['subject']
-    message = request.form['message']
+    try:
+        name = request.form['name']
+        email = request.form['email']
+        subject = request.form['subject']
+        message = request.form['message']
 
-    print(name, email, subject, message)
+        msg = Message(subject=subject, 
+        body='Hey Joe! {} has just sent a contact form submission using {} as their email. Here is the message: {}'.format(name, email, message),
+                    sender="support@studiolock.us",
+                    recipients=["sassonjoe66@gmail.com"])
 
-    time.sleep(3)
+        msg1 = Message(subject='Contact Form Submission',
+        body='Hello, {}. Your message has been sent to our team. We will get back to you ASAP!'.format(name),
+                    sender="support@studiolock.us",
+                    recipients=[email])
 
-    return jsonify(resp='MESSAGE SENT SUCCESSFULLY!')
+        mail.send(msg)
+        mail.send(msg1)
+
+        return jsonify(resp='MESSAGE SENT SUCCESSFULLY!')
+    except Exception as e:
+        print(e)
+        return jsonify(resp='Sorry, your message could not be delivered at this time.')
 
 # misc. functions that should be in admin page
 # @main.route('/perform_fn', methods=['GET', 'POST'])

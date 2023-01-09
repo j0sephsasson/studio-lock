@@ -332,9 +332,10 @@
                         <h4>Join Our Newsletter</h4>
                         <p>Don't miss out on exclusive deals and insider information. Sign up for our newsletter and be
                             the first to know about new products, sales, and events.</p>
-                        <form action="" method="post">
-                            <input type="email" name="email"><input type="submit" value="Subscribe">
+                        <form>
+                            <input type="email" name="subscriber-email" id="subscriber-email" required><input type="submit" value="Subscribe" onclick="subscribe(event);">
                         </form>
+                        <p style="display: none;" id="response"></p>
                     </div>
 
                 </div>
