@@ -153,7 +153,7 @@ def webhook():
             elif booking_data['time_slot'] == '3':
                 bookings[0].slot_three = True
         else:
-            print('no booking found, adding new booking to db...')
+            print('no booking found at {} on {}, adding new booking to db...'.format(booking_data['studio_name'], booking_data['date']))
 
             if booking_data['time_slot'] == '1':
                 new_studio_booking = StudioBookings(studio_name=booking_data['studio_name'], 
@@ -216,6 +216,20 @@ def cancel():
 @main.route('/success', methods=['GET', 'POST'])
 def success():
     return render_template('success.html')
+
+# contact api of our web-app
+@main.route('/contact', methods=['POST'])
+def contact():
+    name = request.form['name']
+    email = request.form['email']
+    subject = request.form['subject']
+    message = request.form['message']
+
+    print(name, email, subject, message)
+
+    time.sleep(3)
+
+    return jsonify(resp='MESSAGE SENT SUCCESSFULLY!')
 
 # misc. functions that should be in admin page
 # @main.route('/perform_fn', methods=['GET', 'POST'])
