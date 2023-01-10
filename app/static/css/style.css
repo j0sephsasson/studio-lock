@@ -1445,3 +1445,35 @@ input[type="date"]:focus {
   color: #574741;
   margin-bottom: 40px;
 }
+
+
+/*--------------------------------------------------------------
+# REQUEST STUDIO SIGNUP
+--------------------------------------------------------------*/
+.form-control {
+  border: none;
+  border-bottom: 1px solid #ccc;
+  border-radius: 0;
+  box-shadow: none;
+  outline: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.form-control:focus {
+  border-color: #666;
+}
+
+#studioName,
+#studioEmail,
+#studioLocation {
+  font-size: 16px;
+  color: #333;
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+
+#request-signup-form {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}

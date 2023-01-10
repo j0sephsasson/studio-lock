@@ -218,6 +218,17 @@ def cancel():
 def success():
     return render_template('success.html')
 
+# request_signup api of our web-app
+@main.route('/request_signup', methods=['POST'])
+def request_signup():
+    email = request.form['email']
+    name = request.form['name']
+    location = request.form['location']
+
+    print(email, name, location)
+
+    return jsonify(resp='You have successfully reached out to our team. We will get back to you soon!')
+
 # subscribe API of web-app
 @main.route('/subscribe', methods=['POST'])
 def subscribe():

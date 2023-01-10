@@ -206,27 +206,27 @@
                             </button>
                             </div>
                             <div class="modal-body">
-                            <form>
-                                <div class="form-group">
-                                <label for="studioName">Studio Name</label>
-                                <input type="text" class="form-control" id="studioName" name="studioName" placeholder="Enter your studio name">
-                                </div>
-                                <br>
-                                <div class="form-group">
-                                <label for="studioLocation">Studio Location</label>
-                                <input type="text" class="form-control" id="studioLocation" name="studioLocation" placeholder="Enter your studio location">
-                                </div>
-                                <br>
-                                <div class="form-group">
-                                    <label for="studioEmail">Studio Email</label>
-                                    <input type="text" class="form-control" id="studioEmail" name="studioEmail" placeholder="Enter your studio email">
-                                </div>
-                                <br>
-                            </form>
+                                <form id="request-signup-form">
+                                    <div class="form-group">
+                                      <label for="studioName">Studio Name</label>
+                                      <input type="text" class="form-control" id="studioName" name="studioName" placeholder="Enter your studio name">
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                      <label for="studioLocation">Studio Location</label>
+                                      <input type="text" class="form-control" id="studioLocation" name="studioLocation" placeholder="Enter your studio location">
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                      <label for="studioEmail">Studio Email</label>
+                                      <input type="text" class="form-control" id="studioEmail" name="studioEmail" placeholder="Enter your studio email">
+                                    </div>
+                                </form>
+                                <p style="display: none;" id="request-signup-response"></p>
                             </div>
                             <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Submit</button>
+                            <button type="button" class="btn btn-primary" onclick="requestSignup(event);">Submit</button>
                             </div>
                         </div>
                         </div>

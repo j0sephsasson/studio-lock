@@ -304,3 +304,40 @@ function subscribe(event) {
     });
   }
 };
+
+// request signup
+function requestSignup(event) {
+  event.preventDefault();
+
+  var email = document.getElementById('studioEmail').value;
+  var location = document.getElementById('studioLocation').value;
+  var name = document.getElementById('studioName').value;
+
+  if (email === '' || location === '' || name === '') {
+    alert("Please Fill All Required Fields");
+    window.location.href = '/#cta'
+  } else {
+    var fd = new FormData();
+    fd.append('email', email);
+    fd.append('location', location);
+    fd.append('name', name);
+
+    $j.ajax({
+      type: "POST",
+      url: '/request_signup',
+      data: fd,
+      processData: false,
+      contentType: false
+    }).done(function (err, req, resp) {
+      document.getElementById('request-signup-response').innerHTML = resp.responseJSON.resp;
+      document.getElementById('request-signup-response').style.display = 'initial';
+
+      document.getElementById('studioName').value = null;
+      document.getElementById('studioLocation').value = null;
+      document.getElementById('studioEmail').value = null;
+      setTimeout(function () {
+        $j('#request-signup-response').fadeOut('slow');
+      }, 7000);
+    });
+  }
+};
