@@ -281,21 +281,26 @@ function subscribe(event) {
 
   var email = document.getElementById('subscriber-email').value;
 
-  var fd = new FormData();
-  fd.append('email', email);
+  if (email === null || email === '') {
+    alert("Please Fill All Required Fields");
+    window.location.href = '/#footer'
+  } else {
+    var fd = new FormData();
+    fd.append('email', email);
 
-  $j.ajax({
+    $j.ajax({
       type: "POST",
       url: '/subscribe',
       data: fd,
       processData: false,
       contentType: false
-  }).done(function (err, req, resp) {
+    }).done(function (err, req, resp) {
       document.getElementById('response').innerHTML = resp.responseJSON.resp;
       document.getElementById('response').style.display = 'initial';
       document.getElementById('subscriber-email').value = null;
       setTimeout(function () {
-          $j('#response').fadeOut('slow');
+        $j('#response').fadeOut('slow');
       }, 7000);
-  });
+    });
+  }
 };
