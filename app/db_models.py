@@ -19,6 +19,7 @@ class Studio(db.Model):
     id = db.Column(db.Integer, primary_key=True) # primary keys are required by SQLAlchemy
     name = db.Column(db.Text, unique=True, nullable=False)
     phone_number = db.Column(db.Text, unique=True, nullable=False)
+    location = db.Column(db.Text, unique=False, nullable=False)
 
 ## studio images ##
 class StudioImages(db.Model):

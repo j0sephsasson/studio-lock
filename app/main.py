@@ -12,6 +12,7 @@ from .db_models import User, Studio, StudioImages, StudioBookings, UserBookings,
 from dotenv import load_dotenv
 from flask_login import login_required, current_user
 from werkzeug.utils import redirect, secure_filename
+from .utils import create_event
 
 ## init env vars
 load_dotenv()
@@ -174,6 +175,16 @@ def webhook():
         db.session.commit()
         print('booking confirmed...')
         print(booking_data)
+
+        print('sending invitation...')
+        stu = Studio.query.filter_by(name=booking_data['studio_name']).first()
+        location = stu.location
+
+        create_event(date=booking_data['date'], slot=booking_data['time_slot'],
+        user_email=customer_email, location=location, studio_name=booking_data['studio_name'])
+
+        print('Invite sent! All done.')
+
     
     return 'success'
 
@@ -225,7 +236,18 @@ def request_signup():
     name = request.form['name']
     location = request.form['location']
 
-    print(email, name, location)
+    msg = Message(subject='Studio Lock - Signup Request', 
+    body='You have successfully requested signup on our platform. Our team will review your information and get back to you ASAP! We look forward to working with you.',
+                sender="support@studiolock.us",
+                recipients=[email])
+
+    msg1 = Message(subject='New Signup Request', 
+    body='New signup request from {}, located at {}. The provided contact email is {}'.format(name, location, email),
+                sender="support@studiolock.us",
+                recipients=['support@studiolock.us'])
+
+    mail.send(msg)
+    mail.send(msg1)     
 
     return jsonify(resp='You have successfully reached out to our team. We will get back to you soon!')
 
@@ -238,6 +260,13 @@ def subscribe():
         new_sub = Subscribers(email=email)
         db.session.add(new_sub)
         db.session.commit()
+
+        msg = Message(subject='Successfully Subscribed', 
+        body='You have successfully subscribed to the Studio Lock newsletter! Be on the lookout for notificiations regarding new studios, offerings, and events!',
+                    sender="support@studiolock.us",
+                    recipients=[email]) 
+
+        mail.send(msg)       
 
         return jsonify(resp='Subscribed Successfully!')
     except:
