@@ -194,8 +194,48 @@
                         <h3>We've booked more than <span>10,000 hours</span> of studio time this year!</h3>
                         <p> If you are a studio, please reach out to be listed on our platform.</p>
                     </div>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="request-signup" tabindex="-1" role="dialog" aria-labelledby="requestSignupLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title" id="requestSignupLabel">Request Signup</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            </div>
+                            <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                <label for="studioName">Studio Name</label>
+                                <input type="text" class="form-control" id="studioName" name="studioName" placeholder="Enter your studio name">
+                                </div>
+                                <br>
+                                <div class="form-group">
+                                <label for="studioLocation">Studio Location</label>
+                                <input type="text" class="form-control" id="studioLocation" name="studioLocation" placeholder="Enter your studio location">
+                                </div>
+                                <br>
+                                <div class="form-group">
+                                    <label for="studioEmail">Studio Email</label>
+                                    <input type="text" class="form-control" id="studioEmail" name="studioEmail" placeholder="Enter your studio email">
+                                </div>
+                                <br>
+                            </form>
+                            </div>
+                            <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+  
+  
+
                     <div class="col-lg-3 cta-btn-container text-center">
-                        <a class="cta-btn align-middle" href="#">Request Signup</a>
+                        <a class="cta-btn align-middle" href="#" data-toggle="modal" data-target="#request-signup">Request Signup</a>
                     </div>
                 </div>
 
@@ -213,47 +253,48 @@
                         <div class="card" style="box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);">
                             <div class="card-body" style="text-align: center;">
 
-                                
+
                                 <div class="form-group" style="margin-bottom: 20px;">
                                     <label for="name" style="color: #f03c02;">Name</label>
-                                    <input type="text" class="form-control" id="contact-form-name" placeholder="Your name"
-                                        name="name" required>
+                                    <input type="text" class="form-control" id="contact-form-name"
+                                        placeholder="Your name" name="name" required>
                                 </div>
                                 <div class="form-group" style="margin-bottom: 20px;">
                                     <label for="email" style="color: #f03c02;">Email</label>
-                                    <input type="email" class="form-control" id="contact-form-email" placeholder="Your email"
-                                        name="email" required>
+                                    <input type="email" class="form-control" id="contact-form-email"
+                                        placeholder="Your email" name="email" required>
                                 </div>
                                 <div class="form-group" style="margin-bottom: 20px;">
                                     <label for="subject" style="color: #f03c02;">Subject</label>
-                                    <input type="text" class="form-control" id="contact-form-subject" placeholder="Subject"
-                                        name="subject" required>
+                                    <input type="text" class="form-control" id="contact-form-subject"
+                                        placeholder="Subject" name="subject" required>
                                 </div>
                                 <div class="form-group" style="margin-bottom: 20px;">
                                     <label for="message" style="color: #f03c02;">Message</label>
-                                    <textarea class="form-control" id="contact-form-message" rows="3" placeholder="Your message"
-                                        name="message" required></textarea>
+                                    <textarea class="form-control" id="contact-form-message" rows="3"
+                                        placeholder="Your message" name="message" required></textarea>
                                 </div>
                                 <div id="contact-form-respdiv" class="text-center" style="display: none;">
                                     <p id="contact-form-response" style="color: black;"></p>
                                 </div>
                                 <div id="sendmailLoadBTN" style="display: none;">
                                     <div class="spinner-grow" role="status" style="color: black;">
-                                        
+
                                     </div>
 
                                     <div class="spinner-grow" role="status" style="color: black;">
-                                        
+
                                     </div>
 
                                     <div class="spinner-grow" role="status" style="color: black;">
-                                        
+
                                     </div>
                                 </div>
-                                    
+
                                 <button type="submit" id="submit-button" class="btn btn-primary"
-                                    style="background-color: #f03c02; border-color: #f03c02;" onclick="sendMail();">Send Message</button>
-                                
+                                    style="background-color: #f03c02; border-color: #f03c02;" onclick="sendMail();">Send
+                                    Message</button>
+
                             </div>
                         </div>
                     </div>
@@ -265,38 +306,97 @@
         <section id="FAQ">
             <div class="container">
                 <h2>Frequently Asked Questions</h2>
-              <div id="accordion">
-                <div class="card">
-                  <div class="card-header" id="headingOne">
-                    <h5 class="mb-0">
-                      <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                        How do I book a studio session?
-                      </button>
-                    </h5>
-                  </div>
-          
-                  <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-                    <div class="card-body">
-                      To book a studio session, simply navigate to the booking page on our website and select the date and time that you would like to reserve. Follow the prompts to complete the booking process and pay for your session.
+                <div id="accordion">
+                    <div class="card">
+                        <div class="card-header" id="headingOne">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne"
+                                    aria-expanded="true" aria-controls="collapseOne">
+                                    How do I book a studio session?
+                                </button>
+                            </h5>
+                        </div>
+
+                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                            data-parent="#accordion">
+                            <div class="card-body">
+                                To book a studio session, simply navigate to the booking page on our website and select
+                                the date and time that you would like to reserve. Follow the prompts to complete the
+                                booking process and pay for your session.
+                            </div>
+                        </div>
                     </div>
-                  </div>
-                </div>
-                <div class="card">
-                  <div class="card-header" id="headingTwo">
-                    <h5 class="mb-0">
-                      <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        How do I pay for a studio session?
-                      </button>
-                    </h5>
-                  </div>
-                  <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-                    <div class="card-body">
-                      Payment for studio sessions can be made online through our secure payment system. We accept all major credit cards and PayPal.
+                    <div class="card">
+                        <div class="card-header" id="headingTwo">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo"
+                                    aria-expanded="false" aria-controls="collapseTwo">
+                                    How do I pay for a studio session?
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                            <div class="card-body">
+                                Payment for studio sessions are handled securely via Stripe.
+                            </div>
+                        </div>
                     </div>
-                  </div>
+                    <!-- Additional FAQs go here -->
+                    <div class="card">
+                        <div class="card-header" id="headingThree">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" data-toggle="collapse"
+                                    data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    Can I cancel or reschedule my booking?
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                            data-parent="#accordion">
+                            <div class="card-body">
+                                If you need to cancel or reschedule your booking, you can do so by contacting the studio
+                                directly or by reaching out to our customer support team. Please note that cancellation
+                                policies may vary by studio, so be sure to read the terms and conditions carefully
+                                before booking.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingFour">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" data-toggle="collapse"
+                                    data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                    What equipment is provided at the studio?
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+                            <div class="card-body">
+                                Each studio's equipment list is displayed on the studio's listing page on our platform.
+                                If you have specific equipment requirements, we recommend reaching out to the studio
+                                directly to confirm that they have what you need.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header" id="headingFive">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" data-toggle="collapse"
+                                    data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                    How do I know if a studio is available for my desired date and time?
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
+                            <div class="card-body">
+                                The availability of each studio is stored in our database. Simply select the date and
+                                time that you are interested in to see if the studio is available.
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-                <!-- Additional FAQs go here -->
-              </div>
             </div>
         </section><!-- End FAQ Section -->
 
@@ -321,10 +421,42 @@
                         <h4>Our Services</h4>
                         <ul>
                             <li><i class="bx bx-chevron-right"></i> <a href="/#FAQ">FAQ</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Cancellation Policy</a></li>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="cancellation-policy" tabindex="-1" role="dialog"
+                                aria-labelledby="cancellationPolicyLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="cancellationPolicyLabel">Cancellation Policy
+                                            </h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <strong><p>Our cancellation policy is as follows:</p></strong>
+                                            <ul>
+                                                <li>Cancellations made more than 48 hours in advance will receive a full
+                                                    refund.</li>
+                                                <li>Cancellations made within 48 hours of the start time will not be
+                                                    eligible for a refund.</li>
+                                            </ul>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <li><i class="bx bx-chevron-right"></i> <a href="#" data-toggle="modal"
+                                    data-target="#cancellation-policy">Cancellation Policy</a></li>
                             <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy Policy</a></li>
                             <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of Service</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Customer Support</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="/#contact">Customer Support</a></li>
                         </ul>
                     </div>
 
@@ -333,7 +465,8 @@
                         <p>Don't miss out on exclusive deals and insider information. Sign up for our newsletter and be
                             the first to know about new products, sales, and events.</p>
                         <form>
-                            <input type="email" name="subscriber-email" id="subscriber-email" required><input type="submit" value="Subscribe" onclick="subscribe(event);">
+                            <input type="email" name="subscriber-email" id="subscriber-email" required><input
+                                type="submit" value="Subscribe" onclick="subscribe(event);">
                         </form>
                         <p style="display: none;" id="response"></p>
                     </div>
@@ -350,11 +483,11 @@
                 </div>
 
             </div>
-            <div class="social-links text-center text-md-right pt-3 pt-md-0">
+            <!-- <div class="social-links text-center text-md-right pt-3 pt-md-0">
                 <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
                 <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
                 <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-            </div>
+            </div> -->
         </div>
     </footer><!-- End Footer -->
 
