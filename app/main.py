@@ -85,7 +85,11 @@ def booking_handler():
 @login_required
 def booking_post(studio_name, date, time_slot, engineer):
     stripe.api_key = os.getenv('STRIPE_TEST_KEY')
-    STUDIO_PRICE_ID = os.getenv(studio_name + '_price_id')
+
+    if engineer != 'Yes':
+        STUDIO_PRICE_ID = os.getenv(studio_name + '_price_id_no_engineer')
+    else:
+        STUDIO_PRICE_ID = os.getenv(studio_name + '_price_id')
 
 
     session = stripe.checkout.Session.create(
