@@ -16,18 +16,20 @@ def string_to_datetime(date_string, slot, end=False):
         - 'slot': str --> '1' or '2' or '3'
 
     Returns:
-        - datetime format string: str --> datetime.datetime(2023, 12, 20, hr, min)
+        - datetime format string: str --> datetime.datetime(2023, 12, 20, hr, min, sec)
     """
 
     # Parse the date string
     date = datetime.strptime(date_string, '%Y-%m-%d')
 
-    times = {'1':{'start':12, 'end':16}, '2':{'start':16, 'end':20}, '3':{'start'}}
+    times = {'1':{'start':12, 'end':16}, '2':{'start':16, 'end':20}, '3':{'start':20, 'end':23}}
 
-    if end:
+    if end and slot != '3':
         # return the datetime object with format
         return datetime(date.year, date.month, date.day, times[slot]['end'], 0, 0)
-    
+    elif end and slot == '3':
+        return datetime(date.year, date.month, date.day, times[slot]['end'], 59, 0)
+
     # return the datetime object with format
     return datetime(date.year, date.month, date.day, times[slot]['start'], 0, 0)
 
