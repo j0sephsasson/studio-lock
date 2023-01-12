@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_login import LoginManager
 from .extensions import db, mail
+from .commands import create_tables
 from dotenv import load_dotenv
 
 import warnings, os
@@ -43,7 +44,9 @@ def create_app():
         # since the user_id is just the primary key of our user table, use it in the query for the user
         return User.query.get(int(user_id))
 
-    with app.app_context():
-        db.create_all()
+    # with app.app_context():
+    #     db.create_all()
+
+    app.cli.add_command(create_tables)
 
     return app
