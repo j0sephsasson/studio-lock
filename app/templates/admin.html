@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Page</title>
+  <style>
+    form{
+        display: flex;
+    }
+    .form-inputs{
+        flex-direction: column;
+        align-items: center;
+    }
+    input[type=file],input[type=submit]{
+        margin: 10px;
+    }
+    #preview {
+        width: 200px;
+        height: 200px;
+        object-fit: cover;
+        margin-left:20px;
+    }
+  </style>
+</head>
+<body>
+    <h1>Add Studio</h1>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div class="alert alert-success">
+            {{ messages[0] }}
+        </div>
+        {% endif %}
+    {% endwith %}
+    <form action="/admin-submit-studio" method="post" >
+        <div class="form-inputs">
+            <label for="studio-name">Studio Name:</label>
+            <input type="text" name="studio-name"><br><br>
+
+            <label for="studio-name">Studio Email:</label>
+            <input type="text" name="studio-email"><br><br>
+
+            <label for="studio-name">Studio Location:</label>
+            <input type="text" name="studio-location"><br><br>
+
+            <label for="studio-name">Studio Phone Number:</label>
+            <input type="text" name="studio-number"><br><br>
+            
+            <input type="submit" value="Submit">
+        </div>
+    </form>
+
+    <hr style="font-weight: bolder;">
+
+    <h1>Add Studio Images</h1>
+    <form action="/admin-submit-studio-images" method="post" enctype="multipart/form-data">
+        <div class="form-inputs">
+            <label for="studio-name">Studio Name:</label>
+            <input type="text" id="studio-name" name="studio-name"><br><br>
+            <label for="studio-image1">Studio Image 1:</label>
+            <input type="file" id="studio-image1" name="studio-image1"><br><br>
+            <label for="studio-image2">Studio Image 2:</label>
+            <input type="file" id="studio-image2" name="studio-image2"><br><br>
+            <label for="studio-image3">Studio Image 3:</label>
+            <input type="file" id="studio-image3" name="studio-image3"><br><br>
+            <input type="submit" value="Submit">
+        </div>
+    </form>
+
+    <script src="/static/js/admin.js"></script>
+</body>
+</html>

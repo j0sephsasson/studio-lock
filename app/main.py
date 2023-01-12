@@ -305,6 +305,62 @@ def contact():
         print(e)
         return jsonify(resp='Sorry, your message could not be delivered at this time.')
 
+
+# admin page of our web-app
+@main.route('/admin/<username>/<password>', methods=['GET','POST'])
+def admin(username, password):
+    if username == os.getenv('ADMIN_USERNAME') and password == os.getenv('ADMIN_PW'):
+        return render_template('admin.html')
+    
+    return redirect(url_for('main.index'))
+
+# admin-submit-studio API
+@main.route('/admin-submit-studio', methods=['POST'])
+def admin_submit_studio():
+    name = request.form['studio-name']
+    email = request.form['studio-email']
+    location = request.form['studio-location']
+    number = request.form['studio-number']
+
+    new_stu = Studio(name=name, email=email, phone_number=number, location=location)
+
+    db.session.add(new_stu)
+    db.session.commit()
+
+    flash('Studio Added!')
+
+    return redirect(url_for('main.admin', username=os.getenv('ADMIN_USERNAME'), 
+    password=os.getenv('ADMIN_PW')))
+
+# admin-submit-studio-images API
+@main.route('/admin-submit-studio-images', methods=['POST'])
+def admin_submit_studio_images():
+    file1 = request.files['studio-image1']
+    file2 = request.files['studio-image2']
+    file3 = request.files['studio-image3']
+
+    name = request.form['studio-name']
+
+    file1.seek(0) # move the cursor to the start of the file
+    image_data1 = file1.read()
+
+    file2.seek(0) # move the cursor to the start of the file
+    image_data2 = file2.read()
+
+    file3.seek(0) # move the cursor to the start of the file
+    image_data3 = file3.read()
+
+    studio = StudioImages(name=name, 
+    image_one=image_data1, 
+    image_two=image_data2, 
+    image_three=image_data3)
+
+    db.session.add(studio)
+    db.session.commit()
+
+    return redirect(url_for('main.admin', username=os.getenv('ADMIN_USERNAME'), 
+    password=os.getenv('ADMIN_PW')))
+
 # misc. functions that should be in admin page
 # @main.route('/perform_fn', methods=['GET', 'POST'])
 # def perform_fn():
