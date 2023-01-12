@@ -285,6 +285,9 @@ function subscribe(event) {
     alert("Please Fill All Required Fields");
     window.location.href = '/#footer'
   } else {
+    document.getElementById('subBTN').style.display = 'none';
+    document.getElementById('subscribe-load').style.display = 'initial';
+
     var fd = new FormData();
     fd.append('email', email);
 
@@ -297,6 +300,10 @@ function subscribe(event) {
     }).done(function (err, req, resp) {
       document.getElementById('response').innerHTML = resp.responseJSON.resp;
       document.getElementById('response').style.display = 'initial';
+
+      document.getElementById('subBTN').style.display = 'initial';
+      document.getElementById('subscribe-load').style.display = 'none';
+
       document.getElementById('subscriber-email').value = null;
       setTimeout(function () {
         $j('#response').fadeOut('slow');
@@ -317,6 +324,10 @@ function requestSignup(event) {
     alert("Please Fill All Required Fields");
     window.location.href = '/#cta'
   } else {
+    document.getElementById('request-signup-btn').style.display = 'none';
+    document.getElementById('request-signup-closeModal').style.display = 'none';
+    document.getElementById('request-signup-load').style.display = 'initial';
+
     var fd = new FormData();
     fd.append('email', email);
     fd.append('location', location);
@@ -331,6 +342,10 @@ function requestSignup(event) {
     }).done(function (err, req, resp) {
       document.getElementById('request-signup-response').innerHTML = resp.responseJSON.resp;
       document.getElementById('request-signup-response').style.display = 'initial';
+
+      document.getElementById('request-signup-load').style.display = 'none';
+      document.getElementById('request-signup-closeModal').style.display = 'initial';
+      document.getElementById('request-signup-btn').style.display = 'initial';
 
       document.getElementById('studioName').value = null;
       document.getElementById('studioLocation').value = null;

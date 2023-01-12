@@ -222,11 +222,17 @@
                                       <input type="text" class="form-control" id="studioEmail" name="studioEmail" placeholder="Enter your studio email">
                                     </div>
                                 </form>
+                                
                                 <p style="display: none;" id="request-signup-response"></p>
                             </div>
                             <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" onclick="requestSignup(event);">Submit</button>
+                                <div id="request-signup-load" style="display: none; margin: auto;">
+                                    <div class="spinner-grow" role="status" ></div>
+                                    <div class="spinner-grow" role="status" ></div>
+                                    <div class="spinner-grow" role="status" ></div>
+                                </div>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="request-signup-closeModal">Close</button>
+                            <button type="button" class="btn btn-primary" onclick="requestSignup(event);" id="request-signup-btn">Submit</button>
                             </div>
                         </div>
                         </div>
@@ -465,9 +471,14 @@
                         <h4>Join Our Newsletter</h4>
                         <p>Don't miss out on exclusive deals and insider information. Sign up for our newsletter and be
                             the first to know about new products, sales, and events.</p>
+                        <div id="subscribe-load" style="display: none;" class="text-center">
+                            <div class="spinner-grow" role="status" style="color: white;"></div>
+                            <div class="spinner-grow" role="status" style="color: white;"></div>
+                            <div class="spinner-grow" role="status" style="color: white;"></div>
+                        </div>
                         <form>
                             <input type="email" name="subscriber-email" id="subscriber-email" required><input
-                                type="submit" value="Subscribe" onclick="subscribe(event);">
+                                type="submit" value="Subscribe" onclick="subscribe(event);" id="subBTN">
                         </form>
                         <p style="display: none;" id="response"></p>
                     </div>
