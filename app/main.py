@@ -183,9 +183,11 @@ def webhook():
         print('sending invitation...')
         stu = Studio.query.filter_by(name=booking_data['studio_name']).first()
         location = stu.location
+        studio_email = stu.email
 
         create_event(date=booking_data['date'], slot=booking_data['time_slot'],
-        user_email=customer_email, location=location, studio_name=booking_data['studio_name'])
+        user_email=customer_email, location=location, 
+        studio_name=booking_data['studio_name'], studio_email=studio_email)
 
         print('Invite sent! All done.')
 

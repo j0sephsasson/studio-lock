@@ -33,7 +33,7 @@ def string_to_datetime(date_string, slot, end=False):
     # return the datetime object with format
     return datetime(date.year, date.month, date.day, times[slot]['start'], 0, 0)
 
-def create_event(date, slot, user_email, location, studio_name):
+def create_event(date, slot, user_email, location, studio_name, studio_email):
 
   # Create the calendar object
   cal = Calendar()
@@ -49,6 +49,7 @@ def create_event(date, slot, user_email, location, studio_name):
   event.add('uid', uuid.uuid4())
   event.add('organizer', 'mailto:support@studiolock.us')
   event.add('attendee', 'mailto:{}'.format(user_email))
+  event.add('attendee', 'mailto:{}'.format(studio_email))
   event.add('location', location)
 
   # Add the event to the calendar

@@ -20,6 +20,7 @@ class Studio(db.Model):
     name = db.Column(db.Text, unique=True, nullable=False)
     phone_number = db.Column(db.Text, unique=True, nullable=False)
     location = db.Column(db.Text, unique=False, nullable=False)
+    email = db.Column(db.Text, unique=False, nullable=False)
 
 ## studio images ##
 class StudioImages(db.Model):
