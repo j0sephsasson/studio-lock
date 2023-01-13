@@ -26,9 +26,9 @@ class Studio(db.Model):
 class StudioImages(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.Text, nullable=False, unique=True)
-    image_one = db.Column(db.BLOB, nullable=False)
-    image_two = db.Column(db.BLOB, nullable=False)
-    image_three = db.Column(db.BLOB, nullable=False)
+    image_one = db.Column(db.LargeBinary, nullable=False)
+    image_two = db.Column(db.LargeBinary, nullable=False)
+    image_three = db.Column(db.LargeBinary, nullable=False)
 
 ## track studio booking availability ## --> studio bookings
 class StudioBookings(db.Model):
