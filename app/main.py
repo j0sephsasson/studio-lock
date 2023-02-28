@@ -189,6 +189,13 @@ def webhook():
         user_email=customer_email, location=location, 
         studio_name=booking_data['studio_name'], studio_email=studio_email)
 
+        msg = Message(subject='New Studio Lock Booking', 
+                    body='ALERT - NEW BOOKING! User: {} just booked Studio: {}'.format(customer_email, booking_data['studio_name']),
+                    sender="support@studiolock.us",
+                    recipients=['peter@dayonesounds.com'])
+
+        mail.send(msg)
+
         print('Invite sent! All done.')
 
     
