@@ -1344,7 +1344,7 @@ body {
 #booking-card {
   margin: auto;
   width: 75%;
-  margin-top: 85px;
+  margin-top: 50px;
 }
 
 .booking-col {
@@ -1366,7 +1366,7 @@ body {
   #booking-card {
     margin: auto;
     width: 75%;
-    margin-top: 50px;
+    margin-top: 85px;
   }
 
   .booking-col {
